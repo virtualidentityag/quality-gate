@@ -1,0 +1,20 @@
+# Generated Files
+/coverage
+#/lib # uncomment after publishing first package
+/public
+/watch
+*.log
+
+# Dependencies
+node_modules
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDEs and Development
+.idea
+.vscode
+.editorconfig
+/.env
+/docker-compose.yml
