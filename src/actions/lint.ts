@@ -1,7 +1,7 @@
-import * as packageJson from '../../package.json';
 import { resolve } from 'path';
-import { CLIEngine as eslint } from 'eslint';
+import { CLIEngine as Eslint } from 'eslint';
 
+import * as packageJson from '../../package.json';
 import { Action } from './types';
 
 const projectPath = resolve(process.cwd());
@@ -19,14 +19,18 @@ interface LintOptions {
 }
 
 interface LintReport {
-  logic?: eslint.LintReport;
+  logic?: Eslint.LintReport;
   style?: {};
 }
 
-const getJsxEtensions = (extensions: string[]) => extensions.map(ext => `${ext}x`);
-const getTestExtensions = (extensions: string[]) => extensions.map(ext => `.spec${ext}`);
+const getJsxEtensions = (extensions: string[]): string[] => extensions.map(ext => `${ext}x`);
+const getTestExtensions = (extensions: string[]): string[] => extensions.map(ext => `.spec${ext}`);
 
-const getExtensions = (typescript?: boolean, javascript?: boolean, includeJsx?: boolean) => {
+const getExtensions = (
+  typescript?: boolean,
+  javascript?: boolean,
+  includeJsx?: boolean,
+): string[] => {
   let extensions: string[] = [];
   if (typescript) {
     extensions.push('.ts');
@@ -40,20 +44,37 @@ const getExtensions = (typescript?: boolean, javascript?: boolean, includeJsx?: 
   return extensions;
 };
 
-const lint = (options: LintOptions) => {
+const report = ({ logic, style }: LintReport): void => {
+  if (logic) {
+    logic.results.forEach(error => error.messages.forEach((message) => {
+      const fileName = error.filePath.replace(projectPath, '.');
+      const line = `[${message.line}, ${message.column}]`;
+      const rule = `(${message.ruleId})`;
+      // eslint-disable-next-line no-console
+      console.error(`${fileName} ${line}: ${message.message} ${rule}`);
+    }));
+  }
+
+  if (style) {
+    // eslint-disable-next-line no-console
+    console.error('SCSS Reporting: Not implemented yet…');
+  }
+};
+
+const lint = (options: LintOptions): void => {
   const result: LintReport = {};
 
   if (options.typescript || options.javascript) {
     const extensions = getExtensions(options.typescript, options.javascript, options.includeJsx);
     const testExtensions = getTestExtensions(extensions);
     const patterns = (options.pattern && options.pattern.split(',').filter(p => !!p)) || [];
-    const baseConfig: eslint.Options['baseConfig'] = {
+    const baseConfig: Eslint.Options['baseConfig'] = {
       extends: `${selfPath}/.eslintrc.base.json`,
       env: { browser: true },
       ...(options.includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
     };
 
-    result.logic = (new eslint({
+    result.logic = (new Eslint({
       ...(!options.configFile ? { baseConfig } : {
         configFile: options.configFile,
       }),
@@ -64,7 +85,7 @@ const lint = (options: LintOptions) => {
   }
 
   if (options.sass) {
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line no-console
     console.error('SCSS Linting: Not implemented yet…');
 
     result.style = {};
@@ -73,20 +94,7 @@ const lint = (options: LintOptions) => {
   report(result);
 };
 
-const report = ({ logic, style }: LintReport) => {
-  if (logic) {
-    logic.results.forEach(error => error.messages.forEach(({ line, column, message }) => {
-      // tslint:disable-next-line:no-console
-      console.error(`${error.filePath.replace(projectPath, '')} [${line}, ${column}]: ${message}`);
-    }));
-  }
-
-  if (style) {
-    // tslint:disable-next-line:no-console
-    console.error('SCSS Reporting: Not implemented yet…');
-  }
-};
-
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const registerLint: Action = program => program
   .command('lint')
   .option('-c, --config-file <file>', 'Specify a configuration file')

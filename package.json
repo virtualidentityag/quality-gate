@@ -18,27 +18,24 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "watch": "tsc --project tsconfig.json -w",
+    "watch": "tsc --project tsconfig.json --watch",
     "test": "echo \"Not implemented yet\"",
-    "lint": "node ./lib --typescript -j -p src",
+    "lint": "npm run build && ./lib/index.js lint -j -t -c .eslintrc.json -p src",
     "start": "yarn build"
   },
   "dependencies": {
     "@types/eslint": "~4.16",
-    "@types/node": " ~10.12",
-    "@typescript-eslint/eslint-plugin": " ~1.1",
-    "babel-eslint": "~10.0",
+    "@typescript-eslint/eslint-plugin": "~1.1",
+    "@typescript-eslint/parser": "~1.1",
     "commander": "~2.19",
     "eslint": "~5.12",
     "eslint-config-airbnb-base": "~13.1",
-    "eslint-plugin-import": "~2.15",
+    "eslint-plugin-import": "~2.16",
     "path": "~0.12",
     "stylelint": "~9.10",
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
-    "tslint": "~5.12",
-    "tslint-config-airbnb-base": "~0.2",
     "typescript": "~3.2"
   }
 }
