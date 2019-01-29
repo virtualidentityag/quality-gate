@@ -18,12 +18,15 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "watch": "tsc --project tsconfig.json -w",
     "test": "echo \"Not implemented yet\"",
-    "lint": "tslint --project tsconfig.json --config tslint.json --format verbose --exclude **/node_modules/**",
+    "lint": "node ./lib --typescript -j -p src",
     "start": "yarn build"
   },
   "dependencies": {
+    "@types/eslint": "~4.16",
     "@types/node": " ~10.12",
+    "@typescript-eslint/eslint-plugin": " ~1.1",
     "babel-eslint": "~10.0",
     "commander": "~2.19",
     "eslint": "~5.12",
