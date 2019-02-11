@@ -58,6 +58,8 @@ const setDefaultOptions = (options: LintOptions): LintOptions => ({
 });
 
 const report = ({ logic, style }: LintReport): void => {
+  let hasErrors = false;
+
   if (logic) {
     logic.results.forEach(error => error.messages.forEach((message) => {
       const fileName = error.filePath.replace(projectPath, '.');
@@ -65,12 +67,17 @@ const report = ({ logic, style }: LintReport): void => {
       const rule = `(${message.ruleId})`;
       // eslint-disable-next-line no-console
       console.error(`${fileName} ${line}: ${message.message} ${rule}`);
+      hasErrors = true;
     }));
   }
 
   if (style) {
     // eslint-disable-next-line no-console
-    console.error('SCSS Reporting: Not implemented yet…');
+    console.log('SCSS Reporting: Not implemented yet…');
+  }
+
+  if (hasErrors) {
+    process.exit(1);
   }
 };
 
