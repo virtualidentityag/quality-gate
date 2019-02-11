@@ -44,6 +44,19 @@ const getExtensions = (
   return extensions;
 };
 
+const hasAnyLintingSet = ({
+  javascript,
+  typescript,
+  sass,
+}: LintOptions) => javascript || typescript || sass;
+
+const setDefaultOptions = (options: LintOptions) => ({
+  ...options,
+  javascript: !hasAnyLintingSet(options) || options.javascript,
+  typescript: !hasAnyLintingSet(options) || options.typescript,
+  pattern: options.pattern || './',
+});
+
 const report = ({ logic, style }: LintReport): void => {
   if (logic) {
     logic.results.forEach(error => error.messages.forEach((message) => {
@@ -63,28 +76,35 @@ const report = ({ logic, style }: LintReport): void => {
 
 const lint = (options: LintOptions): void => {
   const result: LintReport = {};
+  const {
+    javascript,
+    typescript,
+    includeJsx,
+    pattern,
+    configFile,
+    fix,
+    spec,
+    sass,
+  } = setDefaultOptions(options);
 
-  if (options.typescript || options.javascript) {
-    const extensions = getExtensions(options.typescript, options.javascript, options.includeJsx);
+  if (typescript || javascript) {
+    const extensions = getExtensions(typescript, javascript, includeJsx);
     const testExtensions = getTestExtensions(extensions);
-    const patterns = (options.pattern && options.pattern.split(',').filter(p => !!p)) || [];
+    const patterns = (pattern && pattern.split(',').filter(p => !!p)) || [];
     const baseConfig: Eslint.Options['baseConfig'] = {
-      extends: `${selfPath}/.eslintrc.base.json`,
-      env: { browser: true },
-      ...(options.includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
+      ...(includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
+      ...require(configFile || selfPath),
     };
 
     result.logic = (new Eslint({
-      ...(!options.configFile ? { baseConfig } : {
-        configFile: options.configFile,
-      }),
-      fix: !!options.fix,
-      extensions: !options.spec ? extensions : testExtensions,
-      ignorePattern: !options.spec ? testExtensions.map(ext => `*${ext}`) : undefined,
+      baseConfig,
+      fix,
+      extensions: !spec ? extensions : testExtensions,
+      ignorePattern: !spec ? testExtensions.map(ext => `*${ext}`) : undefined,
     })).executeOnFiles(patterns);
   }
 
-  if (options.sass) {
+  if (sass) {
     // eslint-disable-next-line no-console
     console.error('SCSS Linting: Not implemented yet…');
 

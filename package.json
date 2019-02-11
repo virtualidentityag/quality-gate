@@ -20,8 +20,8 @@
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json --watch",
     "test": "echo \"Not implemented yet\"",
-    "lint": "npm run build && ./lib/index.js lint -j -t -c .eslintrc.json -p src",
-    "start": "yarn build"
+    "lint": "npm run build && ./lib/index.js lint -j -t -c ../.. -p src,typings",
+    "start": "npm run build"
   },
   "dependencies": {
     "@types/eslint": "~4.16",
