@@ -48,9 +48,9 @@ const hasAnyLintingSet = ({
   javascript,
   typescript,
   sass,
-}: LintOptions) => javascript || typescript || sass;
+}: LintOptions): boolean => !!javascript || !!typescript || !!sass;
 
-const setDefaultOptions = (options: LintOptions) => ({
+const setDefaultOptions = (options: LintOptions): LintOptions => ({
   ...options,
   javascript: !hasAnyLintingSet(options) || options.javascript,
   typescript: !hasAnyLintingSet(options) || options.typescript,
@@ -93,6 +93,7 @@ const lint = (options: LintOptions): void => {
     const patterns = (pattern && pattern.split(',').filter(p => !!p)) || [];
     const baseConfig: Eslint.Options['baseConfig'] = {
       ...(includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
+      // eslint-disable-next-line global-require,import/no-dynamic-require
       ...require(configFile || selfPath),
     };
 
