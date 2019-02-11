@@ -101,7 +101,7 @@ const lint = (options: LintOptions): void => {
     const baseConfig: Eslint.Options['baseConfig'] = {
       ...(includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
       // eslint-disable-next-line global-require,import/no-dynamic-require
-      ...require(configFile || selfPath),
+      ...require(configFile || `${selfPath}/config/recommended`),
     };
 
     result.logic = (new Eslint({
