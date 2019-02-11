@@ -98,6 +98,7 @@ const lint = (options: LintOptions): void => {
     };
 
     result.logic = (new Eslint({
+      useEslintrc: false,
       baseConfig,
       fix,
       extensions: !spec ? extensions : testExtensions,
