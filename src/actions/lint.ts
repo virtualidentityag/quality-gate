@@ -51,9 +51,9 @@ const hasAnyLintingSet = ({
 
 const setDefaultOptions = (options: LintOptions): LintOptions => ({
   ...options,
+  pattern: options.pattern || './',
   javascript: !hasAnyLintingSet(options) || options.javascript,
   typescript: !hasAnyLintingSet(options) || options.typescript,
-  pattern: options.pattern || './',
 });
 
 const report = ({ logic, style }: LintReport): void => {
@@ -83,14 +83,14 @@ const report = ({ logic, style }: LintReport): void => {
 const lint = (options: LintOptions): void => {
   const result: LintReport = {};
   const {
-    javascript,
-    typescript,
-    includeJsx,
-    pattern,
     configFile,
+    pattern,
+    typescript,
+    javascript,
+    includeJsx,
+    sass,
     fix,
     spec,
-    sass,
   } = setDefaultOptions(options);
 
   if (typescript || javascript) {
@@ -114,7 +114,7 @@ const lint = (options: LintOptions): void => {
 
   if (sass) {
     // eslint-disable-next-line no-console
-    console.error('SCSS Linting: Not implemented yet…');
+    console.log('SCSS Linting: Not implemented yet…');
 
     result.style = {};
   }
