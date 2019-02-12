@@ -1,11 +1,10 @@
 import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 
-import * as packageJson from '../../package.json';
 import { Action } from './types';
 
 const projectPath = resolve(process.cwd());
-const selfPath = resolve(`${projectPath}/node_modules/${packageJson.name}`);
+const selfPath = resolve(`${__dirname}/../..`);
 
 interface LintOptions {
   configFile?: string;
