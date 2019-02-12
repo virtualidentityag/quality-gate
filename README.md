@@ -13,4 +13,5 @@ which is the same as:
 For more information, please run `biotope-quality-gate lint --help`.
 
 ## WARNING
-Currently, when using npm, to fix a bug on the installation, you need to run `bash ./node_modules/\@biotope/quality-gate/npmfix.sh`
+If any dependencies appear to be missing when running the software, you should use `npm install --flatten`.
+In this case, you might have installed a package that is also installing some linting tools with it.
