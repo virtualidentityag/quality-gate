@@ -1,13 +1,15 @@
 import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 
+import * as tsConfig from '../../tsconfig.json';
+import { compile } from '../compile';
 import { Action } from './types';
 
 const projectPath = resolve(process.cwd());
 const selfPath = resolve(`${__dirname}/../..`);
 
 interface LintOptions {
-  configFile?: string;
+  config?: string;
   pattern?: string;
   typescript?: boolean;
   javascript?: boolean;
@@ -83,7 +85,7 @@ const report = ({ logic, style }: LintReport): void => {
 const lint = (options: LintOptions): void => {
   const result: LintReport = {};
   const {
-    configFile,
+    config,
     pattern,
     typescript,
     javascript,
@@ -92,6 +94,16 @@ const lint = (options: LintOptions): void => {
     fix,
     spec,
   } = setDefaultOptions(options);
+
+  const configFileSplit = (config || '').split('.');
+  const configFileExtension = configFileSplit.pop();
+  const configFileName = configFileSplit.join('.');
+  let configFile = config;
+
+  if (config && configFileExtension === 'ts') {
+    compile([resolve(config)], tsConfig);
+    configFile = `${configFileName}.js`;
+  }
 
   if (typescript || javascript) {
     const extensions = getExtensions(typescript, javascript, includeJsx);
@@ -125,7 +137,7 @@ const lint = (options: LintOptions): void => {
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const registerLint: Action = program => program
   .command('lint')
-  .option('-c, --config-file <file>', 'Specify a configuration file')
+  .option('-c, --config <file>', 'Specify a configuration file (ts or js)')
   .option('-p, --pattern <patterns>', 'Specify patterns to run against (comma separated)')
   .option('-t, --typescript', 'Include typescript files (*.ts)')
   .option('-j, --javascript', 'Include javascript files (*.js)')
