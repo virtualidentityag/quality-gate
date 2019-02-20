@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "@types/eslint": "~4.16",
-    "@typescript-eslint/eslint-plugin": "~1.1",
-    "@typescript-eslint/parser": "~1.1",
+    "@typescript-eslint/eslint-plugin": "~1.4",
+    "@typescript-eslint/parser": "~1.4",
     "commander": "~2.19",
-    "eslint": "~5.12",
+    "eslint": "~5.14",
     "eslint-config-airbnb-base": "~13.1",
     "eslint-plugin-import": "~2.16",
     "path": "~0.12",
@@ -36,6 +36,6 @@
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
-    "typescript": "~3.2"
+    "typescript": "~3.3"
   }
 }
