@@ -1,14 +1,26 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["es6"],
+    "module": "commonjs",
     "outDir": "lib",
+    "declarationDir": "lib",
 
     "sourceMap": false,
+    "noEmitOnError": true,
     "declaration": true,
     "removeComments": true,
-    "declarationDir": "lib",
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
 
     "typeRoots": [
       "typings",

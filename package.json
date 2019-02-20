@@ -1,6 +1,6 @@
 {
-  "name": "@biotope/biotope-quality-gate",
-  "version": "0.2.0",
+  "name": "@biotope/quality-gate",
+  "version": "0.3.0",
   "description": "Biotope Quality Gate",
   "author": "Biotope",
   "license": "MIT",
@@ -18,24 +18,24 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "watch": "tsc --project tsconfig.json --watch",
     "test": "echo \"Not implemented yet\"",
-    "lint": "tslint --project tsconfig.json --config tslint.json --format verbose --exclude **/node_modules/**",
-    "start": "yarn build"
+    "lint": "npm run build && node ./lib/index.js lint -j -t -c config/recommended -p src,typings",
+    "start": "npm run build"
   },
   "dependencies": {
-    "@types/node": " ~10.12",
-    "babel-eslint": "~10.0",
+    "@types/eslint": "~4.16",
+    "@typescript-eslint/eslint-plugin": "~1.1",
+    "@typescript-eslint/parser": "~1.1",
     "commander": "~2.19",
     "eslint": "~5.12",
     "eslint-config-airbnb-base": "~13.1",
-    "eslint-plugin-import": "~2.15",
+    "eslint-plugin-import": "~2.16",
     "path": "~0.12",
     "stylelint": "~9.10",
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
-    "tslint": "~5.12",
-    "tslint-config-airbnb-base": "~0.2",
     "typescript": "~3.2"
   }
 }
