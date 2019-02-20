@@ -20,7 +20,7 @@
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json --watch",
     "test": "echo \"Not implemented yet\"",
-    "lint": "npm run build && ./lib/index.js lint -j -t -c config/recommended -p src,typings",
+    "lint": "npm run build && node ./lib/index.js lint -j -t -c config/recommended -p src,typings",
     "start": "npm run build"
   },
   "dependencies": {

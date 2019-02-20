@@ -1,12 +1,8 @@
 import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 
-import * as tsConfig from '../../tsconfig.json';
-import { compile } from '../compile';
+import { getConfigFile } from '../config-file';
 import { Action } from './types';
-
-const projectPath = resolve(process.cwd());
-const selfPath = resolve(`${__dirname}/../..`);
 
 interface LintOptions {
   config?: string;
@@ -59,6 +55,7 @@ const setDefaultOptions = (options: LintOptions): LintOptions => ({
 });
 
 const report = ({ logic, style }: LintReport): void => {
+  const projectPath = resolve(process.cwd());
   let hasErrors = false;
 
   if (logic) {
@@ -95,15 +92,7 @@ const lint = (options: LintOptions): void => {
     spec,
   } = setDefaultOptions(options);
 
-  const configFileSplit = (config || '').split('.');
-  const configFileExtension = configFileSplit.pop();
-  const configFileName = configFileSplit.join('.');
-  let configFile = config;
-
-  if (config && configFileExtension === 'ts') {
-    compile([resolve(config)], tsConfig);
-    configFile = `${configFileName}.js`;
-  }
+  const configFile = getConfigFile(config);
 
   if (typescript || javascript) {
     const extensions = getExtensions(typescript, javascript, includeJsx);
@@ -112,7 +101,7 @@ const lint = (options: LintOptions): void => {
     const baseConfig: Eslint.Options['baseConfig'] = {
       ...(includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
       // eslint-disable-next-line global-require,import/no-dynamic-require
-      ...require(resolve(configFile || `${selfPath}/config/recommended`)),
+      ...require(configFile),
     };
 
     result.logic = (new Eslint({
