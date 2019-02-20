@@ -1,6 +1,6 @@
 # Generated Files
 /coverage
-#/lib # uncomment after publishing first package
+/lib
 /public
 /watch
 *.log

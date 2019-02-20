@@ -3,7 +3,7 @@
 ## WARNING: This is a WIP repo for coding quality and standards on biotope
 
 ## Installing on your project
-- `npm i @biotope/quality-gate`
+- `npm i -D @biotope/quality-gate`
 
 ## Quick run
 - `biotope-quality-gate lint`
