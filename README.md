@@ -22,7 +22,7 @@ This file, if written in typescript, will be compiled to javascript before execu
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
 To extend a configuration or create your own from scratch, you just need to create a typescript or
 javascript file and abide by the eslint configuration standards (for more info,
-[`read this`][link-eslint-config]).
+[read this][link-eslint-config]).
 
 Example:
 - `biotope-quality-gate lint --config ./my-config-file.ts`
