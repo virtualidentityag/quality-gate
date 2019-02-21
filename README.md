@@ -1,5 +1,7 @@
 # biotope-quality-gate
 
+Coding quality and standards enforcer on biotope projects.
+
 ## Installing
 - `npm i -D @biotope/quality-gate`
 
