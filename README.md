@@ -1,14 +1,13 @@
 # biotope-quality-gate
 
-## WARNING: This is a WIP repo for coding quality and standards on biotope
-
-## Installing on your project
+## Installing
 - `npm i -D @biotope/quality-gate`
 
 ## Quick run
 - `biotope-quality-gate lint`
+
 which is the same as:
-- `biotope-quality-gate lint --typescript --javascript --config-file ./node_modules/@biotope/quality-gate --pattern ./`
+- `biotope-quality-gate lint --typescript --javascript --config ./node_modules/@biotope/quality-gate --pattern ./`
 
 ## Commands
 
