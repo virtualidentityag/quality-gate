@@ -23,7 +23,7 @@ javascript file and abide by the eslint configuration standards (for more info,
 [`read this`][link-eslint-config]).
 
 Example:
-`biotope-quality-gate lint --config ./my-config-file.ts`
+- `biotope-quality-gate lint --config ./my-config-file.ts`
 
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
@@ -31,7 +31,7 @@ separating them with commas (`,`).
 To use this option you can add `--pattern <patterns>` or through the shorthanded notation `-p`.
 
 Example:
-`biotope-quality-gate lint --pattern src,typings`
+- `biotope-quality-gate lint --pattern src,typings`
 
 #### Typescript, Javascript, Sass and JSX
 These options allow you to specify what should be linted by the application. When no option is
@@ -47,10 +47,10 @@ To use these options you can add `--typescript`, `--javascript` and `--sass` or 
 shorthanded notations `-t`, `-j` and `-s`, respectively.
 
 Examples:
-`biotope-quality-gate lint` - will lint typescript and javascript files
-`biotope-quality-gate lint --typescript` - will only lint typescript files
-`biotope-quality-gate lint --javascript` - will only lint javascript files
-`biotope-quality-gate lint --include-jsx` - will lint typescript and javascript files, including the
+- `biotope-quality-gate lint` - will lint typescript and javascript files
+- `biotope-quality-gate lint --typescript` - will only lint typescript files
+- `biotope-quality-gate lint --javascript` - will only lint javascript files
+- `biotope-quality-gate lint --include-jsx` - will lint typescript and javascript files, including the
 ones with jsx and tsx extensions
 
 #### Fix
@@ -59,13 +59,16 @@ cannot fix them, it will report them as usual.
 Typically, this option should not be used on any automated tests.
 To use this option you can add `--fix` or through the shorthanded notation `-f`.
 
+Examples:
+- `biotope-quality-gate lint --fix`
+
 #### Tests
 This option will modify the extensions being searched for by adding `.spec` before the selected
 options.
 To use this option you can add `--spec` or through the shorthanded notation `-sp`.
 
 Examples:
-`biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`
+- `biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`
 
 #### Help
 This option will print these options to the console
