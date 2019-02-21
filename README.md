@@ -55,6 +55,9 @@ Examples:
 - `biotope-quality-gate lint --include-jsx` - will lint typescript and javascript files, including the
 ones with jsx and tsx extensions
 
+**WARNING**: The `--sass` option is planned on the roadmap for the project but is not yet
+implemented.
+
 #### Fix
 This option will try to fix any errors that it finds automatically. If there are errors it finds but
 cannot fix them, it will report them as usual.
