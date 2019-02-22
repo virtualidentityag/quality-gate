@@ -24,7 +24,6 @@
     "start": "npm run build"
   },
   "dependencies": {
-    "@types/eslint": "~4.16",
     "@typescript-eslint/eslint-plugin": "~1.4",
     "@typescript-eslint/parser": "~1.4",
     "commander": "~2.19",
@@ -37,5 +36,8 @@
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
     "typescript": "~3.3"
+  },
+  "devDependencies": {
+    "@types/eslint": "~4.16"
   }
 }
