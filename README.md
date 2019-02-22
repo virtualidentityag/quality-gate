@@ -27,6 +27,22 @@ javascript file and abide by the eslint configuration standards (for more info,
 Example:
 - `biotope-quality-gate lint --config ./my-config-file.ts`
 
+Example custom configuration file:
+```typescript
+// my-config-file.ts
+import * as biotopeQualityGate from '@biotope/quality-gate';
+
+const options = {
+  ...biotopeQualityGate,
+  // Add any other definition here. Example:
+  // globals: {
+  //   MY_GLOBAL_VARIABLE: true,
+  // },
+};
+
+export = options;
+```
+
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
 separating them with commas (`,`).
