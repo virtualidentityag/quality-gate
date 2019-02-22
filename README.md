@@ -24,10 +24,7 @@ To extend a configuration or create your own from scratch, you just need to crea
 javascript file and abide by the eslint configuration standards (for more info,
 [read this][link-eslint-config]).
 
-Example:
-- `biotope-quality-gate lint --config ./my-config-file.ts`
-
-Example custom configuration file:
+Custom configuration file example (on typescript):
 ```typescript
 // my-config-file.ts
 import * as biotopeQualityGate from '@biotope/quality-gate';
@@ -43,7 +40,7 @@ const options = {
 export = options;
 ```
 and then run it with:
-- `biotope-quality-gate lint --config my-config-file.ts`
+- `biotope-quality-gate lint --config ./my-config-file.ts`
 
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
