@@ -15,7 +15,6 @@
   "bin": {
     "biotope-quality-gate": "./lib/index.js"
   },
-  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json --watch",
