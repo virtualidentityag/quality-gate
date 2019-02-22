@@ -30,7 +30,6 @@
     "eslint": "~5.14",
     "eslint-config-airbnb-base": "~13.1",
     "eslint-plugin-import": "~2.16",
-    "path": "~0.12",
     "stylelint": "~9.10",
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
