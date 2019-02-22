@@ -16,8 +16,8 @@ which is the same as:
 ### Lint
 
 #### Configuration file
-This options allows you to add your own configuration file, either built from scratch or based on
-the recommended configuration given by the package (at `/` or `/config/recommended/`).
+This option allows you to add your own configuration file, either built from scratch or based on the
+recommended configuration given by the package (at `/` or `/config/recommended/`).
 This file, if written in typescript, will be compiled to javascript before executing.
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
 To extend a configuration or create your own from scratch, you just need to create a typescript or
