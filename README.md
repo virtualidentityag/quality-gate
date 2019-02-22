@@ -42,6 +42,8 @@ const options = {
 
 export = options;
 ```
+and then run it with:
+- `biotope-quality-gate lint --config my-config-file.ts`
 
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
