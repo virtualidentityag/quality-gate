@@ -18,10 +18,13 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "watch": "tsc --project tsconfig.json --watch",
-    "test": "echo \"Not implemented yet\"",
-    "lint": "npm run build && node ./lib/index.js lint -j -t -c config/recommended -p src,typings",
-    "start": "npm run build"
+    "lint": "npm run build && npm run lint:code && npm run lint:tests",
+    "lint:code": "node ./lib/index.js lint -j -t -c config/recommended -p src,typings",
+    "lint:tests": "node ./lib/index.js lint -j -t -c biotope-quality-gate-spec.js -p tests --spec",
+    "start": "npm run build",
+    "test": "npm run lint && npm run test:jest",
+    "test:jest": "jest --config jest.config.js",
+    "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
     "@types/eslint": "~4.16",
@@ -37,5 +40,11 @@
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
     "typescript": "~3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "~24.0",
+    "eslint-plugin-jest": "~22.3",
+    "jest": "~24.1",
+    "ts-jest": "~24.0"
   }
 }
