@@ -17,7 +17,7 @@ describe('#lint', () => {
 
       errors.forEach((error, index) => {
         it(`should have failure number ${index + 1} be "${error}"`, () => {
-          expect(logger.mock.calls[index].join(' ')).toEqual(error);
+          expect(logger.mock.calls[index].join(' ')).toBe(error);
         });
       });
     });
