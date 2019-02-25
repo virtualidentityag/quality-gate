@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "lint": "npm run build && npm run lint:code && npm run lint:tests",
-    "lint:code": "node ./lib/index.js lint -j -t -c config/recommended -p src,typings",
+    "lint:code": "node ./lib/index.js lint -j -t -c config/recommended -p src,typings,./*.js",
     "lint:tests": "node ./lib/index.js lint -j -t -c biotope-quality-gate-spec.js -p tests --spec",
     "start": "npm run build",
     "test": "npm run lint && npm run test:jest",

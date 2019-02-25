@@ -1,7 +1,7 @@
-const recommended = require('./config/recommended');
 
 module.exports = {
-  ...recommended,
+  // eslint-disable-next-line global-require
+  ...require('.'),
   plugins: ['jest'],
   env: {
     'jest/globals': true,
