@@ -60,8 +60,8 @@ In the case of the JSX option, it will only take effect when at least one of the
 both!).
 The typescript and javascript options will effectively ignore any files that match the regex
 `*.spec.?s`. To lint tests, please see the option "Tests" of this README.
-To use these options you can add `--typescript`, `--javascript` and `--sass` or through their
-shorthanded notations `-t`, `-j` and `-s`, respectively.
+To use these options you can add `--typescript`, `--javascript`, `--sass` and `--include-jsx` or
+through their shorthanded notations `-t`, `-j`, `-s` and `-x`, respectively.
 
 Examples:
 - `biotope-quality-gate lint` - will lint typescript and javascript files
