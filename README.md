@@ -79,7 +79,7 @@ cannot fix them, it will report them as usual.
 Typically, this option should not be used on any automated tests.
 To use this option you can add `--fix` or through the shorthanded notation `-f`.
 
-Examples:
+Example:
 - `biotope-quality-gate lint --fix`
 
 #### Tests
@@ -87,7 +87,7 @@ This option will modify the extensions being searched for by adding `.spec` befo
 options.
 To use this option you can add `--spec` or through the shorthanded notation `-sp`.
 
-Examples:
+Example:
 - `biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`
 
 ### Help
