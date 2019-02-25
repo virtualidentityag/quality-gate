@@ -102,9 +102,9 @@ Examples:
 ## Troubleshooting
 
 ### NPM warnings on dependencies missing
-If any dependencies appear to be missing when running the software, you should use
-`npm install --flatten`. In this case, you might have installed a package that is also installing
-some linting tools with it.
+If any dependencies appear to be missing when running the software, you might have installed a
+package that is also installing some linting tools with it. In this case, you should use
+`npm install --flatten` to quick-fix the issue but don't forget to review your dependencies later.
 
 
 
