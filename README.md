@@ -90,8 +90,14 @@ To use this option you can add `--spec` or through the shorthanded notation `-sp
 Examples:
 - `biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`
 
-#### Help
-This option will print these options to the console
+### Help
+This option will print all the above commands and options to the console.
+You can use this option within the main application or on any command listed above.
+To use this option you can add `--help` or through the shorthanded notation `-h`.
+
+Examples:
+- `biotope-quality-gate --help` - will print info on available commands
+- `biotope-quality-gate lint --help` - will print info on available options within the `lint` command
 
 ## Troubleshooting
 
