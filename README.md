@@ -18,7 +18,7 @@ In that sense, you can use the same mechanisms, like:
 - `// eslint-disable rule-three`
 - ...
 
-You can read more about this [here][link-eslint-config].
+You can read more about this [here][link-eslint-disable].
 
 ## Commands
 
@@ -97,3 +97,4 @@ some linting tools with it.
 
 
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
+[link-eslint-disable]: https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments
