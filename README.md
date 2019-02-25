@@ -11,6 +11,15 @@ Coding quality and standards enforcer on biotope projects.
 which is the same as:
 - `biotope-quality-gate lint --typescript --javascript --config ./node_modules/@biotope/quality-gate --pattern ./`
 
+## Disabling rules
+You can disable rules for a certain file, line or group of lines, the same way you do on eslint.
+In that sense, you can use the same mechanisms, like:
+- `// eslint-disable-next-line rule-one,rule-two`
+- `// eslint-disable rule-three`
+- ...
+
+You can read more about this [here][link-eslint-config].
+
 ## Commands
 
 ### Lint
