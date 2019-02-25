@@ -24,7 +24,22 @@ To extend a configuration or create your own from scratch, you just need to crea
 javascript file and abide by the eslint configuration standards (for more info,
 [read this][link-eslint-config]).
 
-Example:
+Custom configuration file example (on typescript):
+```typescript
+// my-config-file.ts
+import * as biotopeQualityGate from '@biotope/quality-gate';
+
+const options = {
+  ...biotopeQualityGate,
+  // Add any other definition here. Example:
+  // globals: {
+  //   MY_GLOBAL_VARIABLE: true,
+  // },
+};
+
+export = options;
+```
+and then run it with:
 - `biotope-quality-gate lint --config ./my-config-file.ts`
 
 #### Pattern
