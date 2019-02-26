@@ -69,8 +69,8 @@ In the case of the JSX option, it will only take effect when at least one of the
 both!).
 The typescript and javascript options will effectively ignore any files that match the regex
 `*.spec.?s`. To lint tests, please see the option "Tests" of this README.
-To use these options you can add `--typescript`, `--javascript` and `--sass` or through their
-shorthanded notations `-t`, `-j` and `-s`, respectively.
+To use these options you can add `--typescript`, `--javascript`, `--sass` and `--include-jsx` or
+through their shorthanded notations `-t`, `-j`, `-s` and `-x`, respectively.
 
 Examples:
 - `biotope-quality-gate lint` - will lint typescript and javascript files
@@ -88,26 +88,32 @@ cannot fix them, it will report them as usual.
 Typically, this option should not be used on any automated tests.
 To use this option you can add `--fix` or through the shorthanded notation `-f`.
 
-Examples:
+Example:
 - `biotope-quality-gate lint --fix`
 
 #### Tests
 This option will modify the extensions being searched for by adding `.spec` before the selected
 options.
-To use this option you can add `--spec` or through the shorthanded notation `-sp`.
+To use this option you can add `--spec` or through the shorthanded notation `-e`.
 
-Examples:
+Example:
 - `biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`
 
-#### Help
-This option will print these options to the console
+### Help
+This option will print all the above commands and options to the console.
+You can use this option within the main application or on any command listed above.
+To use this option you can add `--help` or through the shorthanded notation `-h`.
+
+Examples:
+- `biotope-quality-gate --help` - will print info on available commands
+- `biotope-quality-gate lint --help` - will print info on available options within the `lint` command
 
 ## Troubleshooting
 
 ### NPM warnings on dependencies missing
-If any dependencies appear to be missing when running the software, you should use
-`npm install --flatten`. In this case, you might have installed a package that is also installing
-some linting tools with it.
+If any dependencies appear to be missing when running the software, you might have installed a
+package that is also installing some linting tools with it. In this case, you should use
+`npm install --flatten` to quick-fix the issue but don't forget to review your dependencies later.
 
 
 
