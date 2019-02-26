@@ -94,7 +94,7 @@ Examples:
 #### Tests
 This option will modify the extensions being searched for by adding `.spec` before the selected
 options.
-To use this option you can add `--spec` or through the shorthanded notation `-sp`.
+To use this option you can add `--spec` or through the shorthanded notation `-e`.
 
 Examples:
 - `biotope-quality-gate lint --spec` - will lint files with the extensions `.spec.ts` and `.spec.js`

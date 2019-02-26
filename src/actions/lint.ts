@@ -133,5 +133,5 @@ export const registerLint: Action = program => program
   .option('-x, --include-jsx', 'Include jsx files (*.?sx)')
   .option('-s, --sass', 'Include sass files (*.scss)')
   .option('-f, --fix', 'Try to fix any erros found')
-  .option('-sp, --spec', 'Specify that the files being linted are tests (*.spec.*)')
+  .option('-e, --spec', 'Specify that the files being linted are tests (*.spec.*)')
   .action(lint);
