@@ -17,6 +17,7 @@
 
 </details>
 
+## [v1.0.0-beta.2] - 2019-02-26
 ### :rocket: New features
 - Package now lets you use it programatically through an API (#11)
 ### :hammer: Breaking changes
