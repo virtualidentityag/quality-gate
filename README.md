@@ -11,6 +11,15 @@ Coding quality and standards enforcer on biotope projects.
 which is the same as:
 - `biotope-quality-gate lint --typescript --javascript --config ./node_modules/@biotope/quality-gate --pattern ./`
 
+## Disabling rules
+You can disable rules for a certain file, line or group of lines, the same way you do on eslint.
+In that sense, you can use the same mechanisms, like:
+- `// eslint-disable-next-line rule-one,rule-two`
+- `// eslint-disable rule-three`
+- ...
+
+You can read more about this [here][link-eslint-disable].
+
 ## Commands
 
 ### Lint
@@ -24,7 +33,22 @@ To extend a configuration or create your own from scratch, you just need to crea
 javascript file and abide by the eslint configuration standards (for more info,
 [read this][link-eslint-config]).
 
-Example:
+Custom configuration file example (on typescript):
+```typescript
+// my-config-file.ts
+import * as biotopeQualityGate from '@biotope/quality-gate';
+
+const options = {
+  ...biotopeQualityGate,
+  // Add any other definition here. Example:
+  // globals: {
+  //   MY_GLOBAL_VARIABLE: true,
+  // },
+};
+
+export = options;
+```
+and then run it with:
 - `biotope-quality-gate lint --config ./my-config-file.ts`
 
 #### Pattern
@@ -88,3 +112,4 @@ some linting tools with it.
 
 
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
+[link-eslint-disable]: https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments
