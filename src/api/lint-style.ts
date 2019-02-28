@@ -6,7 +6,7 @@ import { LintOptions, LintResult } from './types';
 
 export const lintStyle = ({ fix, pattern, config }: LintOptions): Promise<LintResult['style']> => Stylelint({
   fix,
-  files: resolver(['.scss'], pattern),
+  files: resolver(['.scss', '.css'], pattern),
   // eslint-disable-next-line global-require,import/no-dynamic-require
   config: require(getConfigFile('style', config)),
 });

@@ -28,7 +28,7 @@ You can read more about this [here][link-eslint-disable].
 This option allows you to add your own configuration file, either built from scratch or based on the
 recommended configuration given by the package.
 The package gives you two recommended configurations, one for logic (javascript and typescript -
-written in a `js`format) and another for style (sass - written in a `json` format).
+written in a `js` format) and another for style (sass - written in a `json` format).
 The former, if written in typescript, will be compiled to javascript before executing.
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
 To extend a configuration or create your own from scratch, you just need to create a typescript,
@@ -73,7 +73,7 @@ npm scripts (`\"./*\"`).
 These options allow you to specify what should be linted by the application. When no option is
 given, the application will assume that it has to lint both typescript and javascript files. If
 either the typescript, javascript or sass options are given, the application will only lint these
-types of files.
+types of files. The sass option will also lint css files.
 In the case of the JSX option, it will only take effect when at least one of the logic-based options
 (typescript and javascript) options are given (or when none is given - remember, the default is
 both!).
@@ -88,6 +88,7 @@ Examples:
 - `biotope-quality-gate lint --javascript` - will only lint javascript files
 - `biotope-quality-gate lint --include-jsx` - will lint typescript and javascript files, including
 the ones with jsx and tsx extensions
+- `biotope-quality-gate lint --sass` - will lint sass and css files
 
 **Note**: When using `--sass` with either `--typescript` or `--javascript`, you are bound to using
 the default configurations given (i.e. don't specify the `--config` option). This is due to sass and
@@ -105,7 +106,7 @@ Example:
 
 #### Tests
 This option will modify the extensions being searched for by adding `.spec` before the selected
-options.
+options. This option will have no effect on sass files.
 To use this option you can add `--spec` or through the shorthanded notation `-e`.
 
 Example:
