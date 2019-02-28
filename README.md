@@ -27,21 +27,21 @@ You can read more about this [here][link-eslint-disable].
 #### Configuration file
 This option allows you to add your own configuration file, either built from scratch or based on the
 recommended configuration given by the package.
-The package gives you two recommended configurations, one for logic (javascript and typescript -
-written in a `js` format) and another for style (sass - written in a `json` format).
-The former, if written in typescript, will be compiled to javascript before executing.
+The package gives you two recommended configurations, one for logic (javascript and typescript) and
+another for style, both written in a `js` format.
+Any configuration file given, if written in typescript, will be compiled before executing.
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
-To extend a configuration or create your own from scratch, you just need to create a typescript,
-javascript or json file and abide by the eslint/styleint configuration standards (for more info,
+To extend a configuration or create your own from scratch, you just need to create a typescript or
+javascript file and abide by the eslint/styleint configuration standards (for more info,
 [read this][link-eslint-config] and [this][link-stylelint-config]).
 
 Custom configuration file example for logic (written in typescript):
 ```typescript
 // my-logic-linting-rules.ts
-import * as biotopeQualityGate from '@biotope/quality-gate';
+import { logic } from '@biotope/quality-gate';
 
 const options = {
-  ...biotopeQualityGate,
+  ...logic,
   // Add any other definition here. Example:
   // globals: {
   //   MY_GLOBAL_VARIABLE: true,
@@ -52,6 +52,24 @@ export = options;
 ```
 and then run it with:
 - `biotope-quality-gate lint --config ./my-logic-linting-rules.ts`
+
+Custom configuration file example for style (written in typescript):
+```typescript
+// my-style-linting-rules.ts
+import { style } from '@biotope/quality-gate';
+
+const options = {
+  ...style,
+  // Add any other definition here. Example:
+  // rules: {
+  //   'unit-whitelist': ['em', 'rem', '%', 's'],
+  // },
+};
+
+export = options;
+```
+and then run it with:
+- `biotope-quality-gate lint --sass --config ./my-style-linting-rules.ts`
 
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
