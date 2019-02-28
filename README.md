@@ -40,7 +40,7 @@ Custom configuration file example for logic (written in typescript):
 // my-logic-linting-rules.ts
 import { logic } from '@biotope/quality-gate';
 
-const options = {
+const options: typeof logic = {
   ...logic,
   // Add any other definition here. Example:
   // globals: {
@@ -58,7 +58,7 @@ Custom configuration file example for style (written in typescript):
 // my-style-linting-rules.ts
 import { style } from '@biotope/quality-gate';
 
-const options = {
+const options: typeof style = {
   ...style,
   // Add any other definition here. Example:
   // rules: {
