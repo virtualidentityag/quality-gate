@@ -1,0 +1,23 @@
+import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
+
+describe('style linting', () => {
+  mockConsole();
+
+  testProject(
+    {
+      sass: true,
+      pattern: `${PROJECTS_PATH}/style-fail`,
+    },
+    [
+      `./${PROJECTS_PATH}/style-fail/index.scss [5, 1]: Unexpected empty line before closing brace (block-closing-brace-empty-line-before)`,
+      `./${PROJECTS_PATH}/style-fail/index.scss [2, 16]: Expected a trailing semicolon (declaration-block-trailing-semicolon)`,
+      `./${PROJECTS_PATH}/style-fail/index.scss [7, 1]: Expected no more than 1 empty line (max-empty-lines)`,
+      `./${PROJECTS_PATH}/style-fail/index.scss [4, 2]: Unexpected whitespace at end of line (no-eol-whitespace)`,
+    ],
+  );
+
+  testProject({
+    sass: true,
+    pattern: `${PROJECTS_PATH}/style-pass`,
+  });
+});
