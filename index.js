@@ -1,7 +1,7 @@
+const logic = require('./config/logic/recommended.js');
+const style = require('./config/style/recommended.js');
 
 module.exports = {
-  // eslint-disable-next-line global-require
-  logic: require('./config/logic'),
-  // eslint-disable-next-line global-require
-  style: require('./config/style'),
+  logic,
+  style,
 };

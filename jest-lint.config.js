@@ -1,9 +1,16 @@
+const config = require('.');
 
 module.exports = {
-  // eslint-disable-next-line global-require
-  ...require('.').logic,
-  plugins: ['jest'],
-  env: {
-    'jest/globals': true,
+  ...config,
+  logic: {
+    ...config.logic,
+    plugins: [
+      ...(config.logic.plugins || []),
+      'jest',
+    ],
+    env: {
+      ...(config.logic.env || {}),
+      'jest/globals': true,
+    },
   },
 };

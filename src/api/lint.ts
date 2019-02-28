@@ -1,6 +1,7 @@
 import { lintLogic } from './lint-logic';
 import { lintStyle } from './lint-style';
 import { LintOptions, LintResult } from './types';
+import { getConfig } from './config';
 
 const hasAnyLintingSet = ({
   javascript,
@@ -18,14 +19,15 @@ const parseOptions = (options: LintOptions): LintOptions => ({
 
 export const lint = (options: LintOptions): Promise<LintResult> => {
   const parsedOptions = parseOptions(options);
+  const config = getConfig(options.config);
   const linterPromises: Promise<LintResult['logic'] | LintResult['style']>[] = [];
 
   if (parsedOptions.sass) {
-    linterPromises.push(lintStyle(parsedOptions));
+    linterPromises.push(lintStyle(config, parsedOptions));
   }
 
   if (parsedOptions.typescript || parsedOptions.javascript) {
-    linterPromises.push(lintLogic(parsedOptions));
+    linterPromises.push(lintLogic(config, parsedOptions));
   }
 
   return new Promise(resolve => Promise.all(linterPromises).then(promises => resolve({

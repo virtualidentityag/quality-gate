@@ -1,12 +1,11 @@
 import { lint as Stylelint } from 'stylelint';
 
-import { getConfigFile } from './config-file';
+import { Config } from './config';
 import { resolver } from './resolver';
 import { LintOptions, LintResult } from './types';
 
-export const lintStyle = ({ fix, pattern, config }: LintOptions): Promise<LintResult['style']> => Stylelint({
-  fix,
-  files: resolver(['.scss', '.css'], pattern),
-  // eslint-disable-next-line global-require,import/no-dynamic-require
-  config: require(getConfigFile('style', config)),
+export const lintStyle = (config: Config, options: LintOptions): Promise<LintResult['style']> => Stylelint({
+  fix: options.fix,
+  files: resolver(['.scss', '.css'], options.pattern),
+  config: config.style,
 });

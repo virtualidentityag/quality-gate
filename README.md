@@ -38,41 +38,36 @@ To extend a configuration or create your own from scratch, you just need to crea
 javascript file and abide by the eslint or styleint configuration standards for logic and style,
 respectively. For more info, [read this][link-eslint-config] and [this][link-stylelint-config]).
 
-Custom configuration file example for logic:
+Custom configuration file example:
 ```typescript
-// my-logic-linting-rules.ts
-import { logic } from '@biotope/quality-gate';
+// my-linting-rules.ts
+import * as config from '@biotope/quality-gate';
 
-const options: typeof logic = {
-  ...logic,
-  // Add any other definition here. Example:
-  // globals: {
-  //   MY_GLOBAL_VARIABLE: true,
-  // },
+const options: typeof config = {
+  logic: {
+    ...config.logic,
+    // Add any other definition here. Example:
+    // globals: {
+    //   MY_GLOBAL_VARIABLE: true,
+    // },
+  },
+  style: {
+    ...config.style,
+    // Add any other definition here. Example:
+    // rules: {
+    //   ...config.style.rules,
+    //   'unit-whitelist': ['em', 'rem', '%', 's'],
+    // },
+  },
 };
 
 export = options;
 ```
 and then run it with:
-- `biotope-quality-gate lint --config ./my-logic-linting-rules.ts`
+- `biotope-quality-gate lint --config ./my-linting-rules.ts`
 
-Custom configuration file example for style:
-```typescript
-// my-style-linting-rules.ts
-import { style } from '@biotope/quality-gate';
-
-const options: typeof style = {
-  ...style,
-  // Add any other definition here. Example:
-  // rules: {
-  //   'unit-whitelist': ['em', 'rem', '%', 's'],
-  // },
-};
-
-export = options;
-```
-and then run it with:
-- `biotope-quality-gate lint --sass --config ./my-style-linting-rules.ts`
+**Note**: For a seemless merge between the recommended config and your own, consider using a package
+like `merge-deep`.
 
 #### Pattern
 This option allows you to specify where to run the linter on. Several patterns can be specified by
@@ -112,12 +107,6 @@ Examples:
 - `biotope-quality-gate lint --javascript` - will only lint `js` files
 - `biotope-quality-gate lint --include-jsx` - will lint `ts`, `tsx`, `js`, `jsx`, `scss` and `css`
 files
-
-**Note**: When using `--sass` with either `--typescript` or `--javascript`, you are bound to using
-the default configurations given (i.e. don't specify the `--config` option). This is due to sass and
-typescript/javascript both having very different configuration files. We advise you to always create
-separate npm scripts for linting style and logic to avoid this issue entirely, or use the default
-configurations.
 
 #### Fix
 This option will try to fix any errors that it finds automatically. If there are errors it finds but

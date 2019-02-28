@@ -4,24 +4,29 @@ import { existsSync } from 'fs';
 import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
 
-const CONFIG_FOLDER = `${__dirname}/../../config`;
-const CONFIG_DEFAULT_STYLE = `${CONFIG_FOLDER}/style/index.js`;
-const CONFIG_DEFAULT_LOGIC = `${CONFIG_FOLDER}/logic/index.js`;
+const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
 
-const resolveConfigFile = (type: 'logic' | 'style', configFile?: string): string => {
+interface StyleConfig extends IndexObjectAny, JSON {}
+
+export interface Config {
+  logic: IndexObjectAny;
+  style: StyleConfig;
+}
+
+const resolveConfigFile = (configFile?: string): string => {
   if (configFile) {
     if (existsSync(resolve(configFile))) {
       return resolve(configFile);
     }
     throw new Error(`Cannot find configuration file: "${configFile}"`);
   }
-  return resolve(type === 'logic' ? CONFIG_DEFAULT_LOGIC : CONFIG_DEFAULT_STYLE);
+  return resolve(CONFIG_DEFAULT);
 };
 
 const isTsFile = (file: string): boolean => file.split('.').pop() === 'ts';
 
-export const getConfigFile = (type: 'logic' | 'style', configFile?: string): string => {
-  let actualConfigFile = resolveConfigFile(type, configFile);
+export const getConfig = (configFile?: string): Config => {
+  let actualConfigFile = resolveConfigFile(configFile);
 
   if (isTsFile(actualConfigFile)) {
     const fileNameSplit = actualConfigFile.split('.');
@@ -30,5 +35,6 @@ export const getConfigFile = (type: 'logic' | 'style', configFile?: string): str
     compile([actualConfigFile], tsConfig);
     actualConfigFile = `${fileNameSplit.join('.')}.js`;
   }
-  return actualConfigFile;
+  // eslint-disable-next-line global-require,import/no-dynamic-require
+  return require(actualConfigFile);
 };
