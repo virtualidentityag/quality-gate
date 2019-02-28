@@ -17,9 +17,10 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "lint": "npm run build && npm run lint:code && npm run lint:tests",
-    "lint:code": "node ./lib/index.js lint -c config/recommended -p config,src,typings,./*.js",
+    "lint": "npm run build && npm run lint:code && npm run lint:tests:helpers && npm run lint:tests",
+    "lint:code": "node ./lib/index.js lint -c config/recommended -p config,src,typings,\"./*\"",
     "lint:tests": "node ./lib/index.js lint -c biotope-quality-gate-spec.js -e -p tests",
+    "lint:tests:helpers": "node ./lib/index.js lint -c biotope-quality-gate-spec.js -p tests/helpers",
     "start": "npm run build",
     "test": "npm run lint && npm run test:jest",
     "test:jest": "jest --config jest.config.js",
@@ -32,6 +33,7 @@
     "eslint": "~5.14",
     "eslint-config-airbnb-base": "~13.1",
     "eslint-plugin-import": "~2.16",
+    "glob": "~7.1",
     "stylelint": "~9.10",
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
@@ -40,7 +42,9 @@
   },
   "devDependencies": {
     "@types/eslint": "~4.16",
+    "@types/glob": "~7.1",
     "@types/jest": "~24.0",
+    "@types/stylelint": "~9.4",
     "eslint-plugin-jest": "~22.3",
     "jest": "~24.1",
     "ts-jest": "~24.0"
