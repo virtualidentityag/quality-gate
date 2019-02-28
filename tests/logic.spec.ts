@@ -5,6 +5,8 @@ describe('logic linting', () => {
 
   testProject(
     {
+      javascript: true,
+      typescript: true,
       pattern: `${PROJECTS_PATH}/logic-fail`,
     },
     [
@@ -18,6 +20,8 @@ describe('logic linting', () => {
   );
 
   testProject({
+    javascript: true,
+    typescript: true,
     pattern: `${PROJECTS_PATH}/logic-pass`,
   });
 });

@@ -31,9 +31,6 @@ describe('all linting', () => {
   );
 
   testProject({
-    javascript: true,
-    typescript: true,
-    sass: true,
     pattern: `${PROJECTS_PATH}/all-pass`,
   });
 });
