@@ -10,6 +10,23 @@ interface ErrorContainer {
   errored?: boolean;
 }
 
+interface StylelintWarning {
+  line: number;
+  column: number;
+  text: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fixStylelintTyping = (warnings: string[]): StylelintWarning[] => (warnings as any);
+
+const sortByLineColumn = (warnings: string[]): StylelintWarning[] => fixStylelintTyping(warnings)
+  .sort((left: StylelintWarning, right: StylelintWarning): number => {
+    if (left.line !== right.line) {
+      return left.line > right.line ? 1 : -1;
+    }
+    return left.column >= right.column ? 1 : -1;
+  });
+
 const textLog = (
   file: string,
   line: string,
@@ -19,7 +36,7 @@ const textLog = (
 ): string => `${file} [${line}, ${column}]: ${message}${rule ? ` (${rule})` : ''}`;
 
 const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Console['log']): void => report.results
-  .forEach((error): void => error.messages.forEach((warning): void => logger(textLog(
+  .forEach(error => error.messages.forEach(warning => logger(textLog(
     error.filePath.replace(projectPath, '.'),
     `${warning.line}`,
     `${warning.column}`,
@@ -28,8 +45,11 @@ const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Con
   ))));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  .forEach((result): void => (result.warnings as any[]).forEach((warning): void => logger(textLog(
+  .map(result => ({
+    ...result,
+    warnings: sortByLineColumn(result.warnings),
+  }))
+  .forEach(result => result.warnings.forEach(warning => logger(textLog(
     result.source.replace(projectPath, '.'),
     `${warning.line}`,
     `${warning.column}`,
