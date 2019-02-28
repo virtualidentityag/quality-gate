@@ -13,6 +13,7 @@ const parseOptions = (options: LintOptions): LintOptions => ({
   pattern: options.pattern || './',
   javascript: !hasAnyLintingSet(options) || options.javascript,
   typescript: !hasAnyLintingSet(options) || options.typescript,
+  sass: !hasAnyLintingSet(options) || options.sass,
 });
 
 export const lint = (options: LintOptions): Promise<LintResult> => {
