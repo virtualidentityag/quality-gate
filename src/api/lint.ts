@@ -69,6 +69,8 @@ export const lint = (options: LintOptions): LintReport => {
       extensions: !spec ? extensions : testExtensions,
       ignorePattern: !spec ? testExtensions.map(ext => `*${ext}`) : undefined,
     })).executeOnFiles(patterns);
+
+    Eslint.outputFixes(result.logic);
   }
 
   if (sass) {
