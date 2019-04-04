@@ -19,7 +19,7 @@
     "build": "tsc --project tsconfig.json",
     "lint": "npm run build && npm run lint:code && npm run lint:tests:helpers && npm run lint:tests",
     "lint:code": "node ./lib/index.js lint -p config,src,typings,\"./*\"",
-    "lint:code:fix": "node ./lib/index.js lint --fix -c config/recommended -p config,src,typings,\"./*\"",
+    "lint:code:fix": "node ./lib/index.js lint -f -p config,src,typings,\"./*\"",
     "lint:tests": "node ./lib/index.js lint -c jest-lint.config.js -e -p \"tests/*\"",
     "lint:tests:helpers": "node ./lib/index.js lint -c jest-lint.config.js -p tests/helpers",
     "start": "npm run build",
