@@ -15,11 +15,16 @@ export const lintLogic = (config: Config, options: LintOptions): Promise<LintRes
   const extensionsToBeUsed = !options.spec ? extensions : testExtensions;
   const ignorePattern = !options.spec ? testExtensions.map(ext => `*${ext}`) : undefined;
 
-  return new Promise(resolve => resolve(new Eslint({
+  return new Promise<LintResult['logic']>(resolve => resolve(new Eslint({
     useEslintrc: false,
     baseConfig,
     fix: options.fix,
     extensions: extensionsToBeUsed,
     ignorePattern,
-  }).executeOnFiles(resolver(extensionsToBeUsed, options.pattern))));
+  }).executeOnFiles(resolver(extensionsToBeUsed, options.pattern)))).then((result) => {
+    if (result) {
+      Eslint.outputFixes(result);
+    }
+    return result;
+  });
 };
