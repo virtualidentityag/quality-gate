@@ -1,6 +1,6 @@
 import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
 
-describe('style linting', () => {
+describe('style linting', (): void => {
   mockConsole();
 
   testProject(

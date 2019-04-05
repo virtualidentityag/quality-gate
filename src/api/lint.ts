@@ -30,8 +30,9 @@ export const lint = (options: LintOptions): Promise<LintResult> => {
     linterPromises.push(lintLogic(config, parsedOptions));
   }
 
-  return new Promise(resolve => Promise.all(linterPromises).then(promises => resolve({
-    logic: (parsedOptions.sass ? promises[1] : promises[0]) as LintResult['logic'],
-    style: parsedOptions.sass ? promises[0] as LintResult['style'] : undefined,
-  })));
+  return new Promise((resolve): Promise<LintResult | void> => Promise.all(linterPromises)
+    .then((promises): void => resolve({
+      logic: (parsedOptions.sass ? promises[1] : promises[0]) as LintResult['logic'],
+      style: parsedOptions.sass ? promises[0] as LintResult['style'] : undefined,
+    })));
 };

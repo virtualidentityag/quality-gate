@@ -36,7 +36,7 @@ const textLog = (
 ): string => `${file} [${line}, ${column}]: ${message}${rule ? ` (${rule})` : ''}`;
 
 const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Console['log']): void => report.results
-  .forEach(error => error.messages.forEach(warning => logger(textLog(
+  .forEach((error): void => error.messages.forEach((warning): void => logger(textLog(
     error.filePath.replace(projectPath, '.'),
     `${warning.line}`,
     `${warning.column}`,
@@ -45,11 +45,13 @@ const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Con
   ))));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   .map(result => ({
     ...result,
     warnings: sortByLineColumn(result.warnings),
   }))
-  .forEach(result => result.warnings.forEach(warning => logger(textLog(
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  .forEach(result => result.warnings.forEach((warning): void => logger(textLog(
     result.source.replace(projectPath, '.'),
     `${warning.line}`,
     `${warning.column}`,
@@ -60,7 +62,7 @@ const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
   (
     value: boolean,
     { errorCount, warningCount, errored }: ErrorContainer,
-  ) => value || !!errorCount || !!warningCount || !!errored,
+  ): boolean => value || !!errorCount || !!warningCount || !!errored,
   false,
 );
 

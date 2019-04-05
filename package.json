@@ -18,10 +18,13 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "lint": "npm run build && npm run lint:code && npm run lint:tests:helpers && npm run lint:tests",
+    "lint:fix": "npm run build && npm run lint:code:fix && npm run lint:tests:helpers:fix && npm run lint:tests:fix",
     "lint:code": "node ./lib/index.js lint -p config,src,typings,\"./*\"",
-    "lint:code:fix": "node ./lib/index.js lint -f -p config,src,typings,\"./*\"",
+    "lint:code:fix": "node ./lib/index.js lint -p config,src,typings,\"./*\" -f",
     "lint:tests": "node ./lib/index.js lint -c jest-lint.config.js -e -p \"tests/*\"",
+    "lint:tests:fix": "node ./lib/index.js lint -c jest-lint.config.js -e -p \"tests/*\" -f",
     "lint:tests:helpers": "node ./lib/index.js lint -c jest-lint.config.js -p tests/helpers",
+    "lint:tests:helpers:fix": "node ./lib/index.js lint -c jest-lint.config.js -p tests/helpers -f",
     "start": "npm run build",
     "test": "npm run lint && npm run test:cli:sass && npm run test:jest",
     "test:jest": "jest --config jest.config.js",
@@ -29,10 +32,10 @@
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "~1.4",
-    "@typescript-eslint/parser": "~1.4",
-    "commander": "~2.19",
-    "eslint": "~5.14",
+    "@typescript-eslint/eslint-plugin": "~1.6",
+    "@typescript-eslint/parser": "~1.6",
+    "commander": "~2.20",
+    "eslint": "~5.16",
     "eslint-config-airbnb-base": "~13.1",
     "eslint-plugin-import": "~2.16",
     "glob": "~7.1",
@@ -40,15 +43,15 @@
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
-    "typescript": "~3.3"
+    "typescript": "~3.4"
   },
   "devDependencies": {
     "@types/eslint": "~4.16",
     "@types/glob": "~7.1",
     "@types/jest": "~24.0",
-    "@types/stylelint": "~9.4",
-    "eslint-plugin-jest": "~22.3",
-    "jest": "~24.1",
+    "@types/stylelint": "~9.10",
+    "eslint-plugin-jest": "~22.4",
+    "jest": "~24.7",
     "ts-jest": "~24.0"
   }
 }

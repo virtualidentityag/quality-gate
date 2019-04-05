@@ -1,5 +1,5 @@
 
-const getJsxEtensions = (extensions: string[]): string[] => extensions.map(ext => `${ext}x`);
+const getJsxEtensions = (extensions: string[]): string[] => extensions.map((ext: string): string => `${ext}x`);
 
 export const getExtensions = (
   typescript?: boolean,
@@ -19,4 +19,4 @@ export const getExtensions = (
   return extensions;
 };
 
-export const getTestExtensions = (extensions: string[]): string[] => extensions.map(ext => `.spec${ext}`);
+export const getTestExtensions = (extensions: string[]): string[] => extensions.map((ext: string): string => `.spec${ext}`);

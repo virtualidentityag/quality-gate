@@ -1,16 +1,16 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
+import { CLIEngine as Eslint } from 'eslint';
+import { Configuration as StylelintConfiguration } from 'stylelint';
 
 import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
 
 const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
 
-interface StyleConfig extends IndexObjectAny, JSON {}
-
 export interface Config {
-  logic: IndexObjectAny;
-  style: StyleConfig;
+  logic: Eslint.LintReport;
+  style: StylelintConfiguration;
 }
 
 const resolveConfigFile = (configFile?: string): string => {
