@@ -1,6 +1,6 @@
 {
   "name": "@biotope/quality-gate",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Coding quality and standards enforcer on biotope projects",
   "author": "Biotope",
   "license": "MIT",
