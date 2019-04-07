@@ -1,16 +1,30 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
-import { CLIEngine as Eslint } from 'eslint';
-import * as Stylelint from 'stylelint';
+import { Linter as Eslint } from 'eslint';
+// rewriting stylelint configuration as it does not contain '?' in all fields
+// import { Configuration as StyleOptions } from 'stylelint';
 
 import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
 
 const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
 
+interface LogicOptions extends Eslint.Config {
+  extends?: string[];
+}
+
 export interface Config {
-  logic: Eslint.Options;
-  style: Stylelint.Configuration;
+  logic?: LogicOptions;
+  // rewriting stylelint configuration as it does not contain '?' in all fields
+  // style?: StyleOptions;
+  style?: {
+    rules?: Record<string, any>;
+    extends?: string | string[];
+    plugins?: string[];
+    processors?: string[];
+    ignoreFiles?: string | string[];
+    defaultSeverity?: 'warning' | 'error';
+  };
 }
 
 const resolveConfigFile = (configFile?: string): string => {
