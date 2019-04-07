@@ -6,7 +6,7 @@ module.exports = {
   ],
   rules: {
     // Project-specific Overrides
-    'import/no-unresolved': ['error', { ignore: ['\\.scss$'] }],
+    'import/no-unresolved': 'off', // FIXME should be ignoring just '\\.(s?)css$', instead of being 'off'
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
 

@@ -32,7 +32,7 @@ export const fullConfig: Config = {
     ],
     rules: {
       // Project-specific Overrides
-      'import/no-unresolved': ['error', { ignore: ['\\.scss$'] }],
+      'import/no-unresolved': 'off',
       'import/prefer-default-export': 'off',
       'import/no-default-export': 'error',
 
