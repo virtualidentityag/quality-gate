@@ -6,7 +6,7 @@ module.exports = {
   ],
   rules: {
     // Project-specific Overrides
-    'import/no-unresolved': '\\.scss$',
+    'import/no-unresolved': ['error', { ignore: ['\\.scss$'] }],
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
 
