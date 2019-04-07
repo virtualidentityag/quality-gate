@@ -18,6 +18,7 @@ export interface Config {
   // rewriting stylelint configuration as it does not contain '?' in all fields
   // style?: StyleOptions;
   style?: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     rules?: Record<string, any>;
     extends?: string | string[];
     plugins?: string[];
