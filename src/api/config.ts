@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import { existsSync } from 'fs';
 import { CLIEngine as Eslint } from 'eslint';
-import { Configuration as StylelintConfiguration } from 'stylelint';
+import * as Stylelint from 'stylelint';
 
 import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
@@ -9,8 +9,8 @@ import { compile } from '../compile';
 const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
 
 export interface Config {
-  logic: Eslint.LintReport;
-  style: StylelintConfiguration;
+  logic: Eslint.Options;
+  style: Stylelint.Configuration;
 }
 
 const resolveConfigFile = (configFile?: string): string => {
