@@ -1,4 +1,5 @@
 import { CLIEngine as Eslint } from 'eslint';
+import * as Stylelint from 'stylelint';
 
 export interface LintOptions {
   config?: string;
@@ -11,7 +12,7 @@ export interface LintOptions {
   spec?: boolean;
 }
 
-export interface LintReport {
+export interface LintResult {
   logic?: Eslint.LintReport;
-  style?: {};
+  style?: Stylelint.LinterResult;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@biotope/quality-gate",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Coding quality and standards enforcer on biotope projects",
   "author": "Biotope",
   "license": "MIT",
@@ -17,33 +17,41 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "lint": "npm run build && npm run lint:code && npm run lint:tests",
-    "lint:code": "node ./lib/index.js lint -c config/recommended -p config,src,typings,./*.js",
-    "lint:code:fix": "node ./lib/index.js lint --fix -c config/recommended -p config,src,typings,./*.js",
-    "lint:tests": "node ./lib/index.js lint -c biotope-quality-gate-spec.js -e -p tests",
+    "lint": "npm run build && npm run lint:code && npm run lint:tests:helpers && npm run lint:tests",
+    "lint:fix": "npm run build && npm run lint:code:fix && npm run lint:tests:helpers:fix && npm run lint:tests:fix",
+    "lint:code": "node ./lib/index.js lint -p config,src,typings,\"./*\"",
+    "lint:code:fix": "node ./lib/index.js lint -p config,src,typings,\"./*\" -f",
+    "lint:tests": "node ./lib/index.js lint -c jest-lint.config.js -e -p \"tests/*\"",
+    "lint:tests:fix": "node ./lib/index.js lint -c jest-lint.config.js -e -p \"tests/*\" -f",
+    "lint:tests:helpers": "node ./lib/index.js lint -c jest-lint.config.js -p tests/helpers",
+    "lint:tests:helpers:fix": "node ./lib/index.js lint -c jest-lint.config.js -p tests/helpers -f",
     "start": "npm run build",
-    "test": "npm run lint && npm run test:jest",
+    "test": "npm run lint && npm run test:cli:sass && npm run test:jest",
     "test:jest": "jest --config jest.config.js",
+    "test:cli:sass": "node ./lib/index.js lint -s -p tests/projects/all-pass",
     "watch": "tsc --project tsconfig.json --watch"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "~1.4",
-    "@typescript-eslint/parser": "~1.4",
-    "commander": "~2.19",
-    "eslint": "~5.14",
+    "@types/eslint": "~4.16",
+    "@types/stylelint": "~9.10",
+    "@typescript-eslint/eslint-plugin": "~1.6",
+    "@typescript-eslint/parser": "~1.6",
+    "commander": "~2.20",
+    "eslint": "~5.16",
     "eslint-config-airbnb-base": "~13.1",
     "eslint-plugin-import": "~2.16",
+    "glob": "~7.1",
     "stylelint": "~9.10",
     "stylelint-config-recommended-scss": "~3.2",
     "stylelint-config-standard": "~18.2",
     "stylelint-scss": "~3.5",
-    "typescript": "~3.3"
+    "typescript": "~3.4"
   },
   "devDependencies": {
-    "@types/eslint": "~4.16",
+    "@types/glob": "~7.1",
     "@types/jest": "~24.0",
-    "eslint-plugin-jest": "~22.3",
-    "jest": "~24.1",
+    "eslint-plugin-jest": "~22.4",
+    "jest": "~24.7",
     "ts-jest": "~24.0"
   }
 }
