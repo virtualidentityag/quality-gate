@@ -61,8 +61,8 @@ const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger
 const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
   (
     value: boolean,
-    { errorCount, warningCount, errored }: ErrorContainer,
-  ): boolean => value || !!errorCount || !!warningCount || !!errored,
+    { errorCount, errored }: ErrorContainer,
+  ): boolean => value || !!errorCount || !!errored,
   false,
 );
 
