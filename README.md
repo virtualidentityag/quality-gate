@@ -37,6 +37,9 @@ To use this option you can add `--config <file>` or through the shorthanded nota
 To extend a configuration or create your own from scratch, you just need to create a typescript or
 javascript file and abide by the eslint or styleint configuration standards for logic and style,
 respectively. For more info, [read this][link-eslint-config] and [this][link-stylelint-config]).
+Note that, by default, if no config file is given and have a `.eslintrc` and/or a `.stylelintrc`
+file(s) in the root of your project, you don't need to create a config file as these two files will
+be used in its place.
 
 Custom configuration file example:
 ```typescript

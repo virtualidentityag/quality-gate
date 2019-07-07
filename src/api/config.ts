@@ -8,6 +8,10 @@ import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
 
 const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
+const eslintConfigFile = '.eslintrc';
+const stylelintConfigFile = '.stylelintrc';
+
+type OptionType = 'logic' | 'style';
 
 interface LogicOptions extends Eslint.Config {
   extends?: string[];
@@ -28,6 +32,8 @@ export interface Config {
   };
 }
 
+type AnyConfig = Config['logic'] | Config['style'];
+
 const resolveConfigFile = (configFile?: string): string => {
   if (configFile) {
     if (existsSync(resolve(configFile))) {
@@ -36,6 +42,29 @@ const resolveConfigFile = (configFile?: string): string => {
     throw new Error(`Cannot find configuration file: "${configFile}"`);
   }
   return resolve(CONFIG_DEFAULT);
+};
+
+const requireResolveType = (configFile: string, type?: OptionType): AnyConfig => (type
+  // eslint-disable-next-line global-require,import/no-dynamic-require
+  ? require(resolve(configFile))[type]
+  // eslint-disable-next-line global-require,import/no-dynamic-require
+  : require(resolve(configFile))
+);
+
+const getSingleConfig = (type: OptionType, configFile?: string): AnyConfig => {
+  const fileName = type === 'logic' ? eslintConfigFile : stylelintConfigFile;
+  const defaultObject = requireResolveType(CONFIG_DEFAULT, type);
+
+  if (configFile) {
+    if (existsSync(resolve(configFile))) {
+      return requireResolveType(configFile, type) || defaultObject;
+    }
+    throw new Error(`Cannot find configuration file: "${configFile}"`);
+  }
+  if (existsSync(resolve(fileName))) {
+    return requireResolveType(fileName);
+  }
+  return defaultObject;
 };
 
 const isTsFile = (file: string): boolean => file.split('.').pop() === 'ts';
@@ -50,6 +79,9 @@ export const getConfig = (configFile?: string): Config => {
     compile([actualConfigFile], tsConfig);
     actualConfigFile = `${fileNameSplit.join('.')}.js`;
   }
-  // eslint-disable-next-line global-require,import/no-dynamic-require
-  return require(actualConfigFile);
+
+  return {
+    logic: getSingleConfig('logic', actualConfigFile) as Config['logic'],
+    style: getSingleConfig('style', actualConfigFile) as Config['style'],
+  };
 };

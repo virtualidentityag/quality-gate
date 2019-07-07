@@ -34,24 +34,24 @@
   "dependencies": {
     "@types/eslint": "~4.16",
     "@types/stylelint": "~9.10",
-    "@typescript-eslint/eslint-plugin": "~1.10.2",
-    "@typescript-eslint/parser": "~1.10.2",
+    "@typescript-eslint/eslint-plugin": "~1.11",
+    "@typescript-eslint/parser": "~1.11",
     "commander": "~2.20",
-    "eslint": "~6.0.0",
-    "eslint-config-airbnb-base": "~13.1",
-    "eslint-plugin-import": "~2.18.0",
+    "eslint": "~6.0",
+    "eslint-config-airbnb-base": "~13.2",
+    "eslint-plugin-import": "~2.18",
     "glob": "~7.1",
-    "stylelint": "~10.1.0",
-    "stylelint-config-recommended-scss": "~3.3.0",
-    "stylelint-config-standard": "~18.3.0",
-    "stylelint-scss": "~3.8.0",
-    "typescript": "~3.5.2"
+    "stylelint": "~10.1",
+    "stylelint-config-recommended-scss": "~3.3",
+    "stylelint-config-standard": "~18.3",
+    "stylelint-scss": "~3.9",
+    "typescript": "~3.5"
   },
   "devDependencies": {
     "@types/glob": "~7.1",
     "@types/jest": "~24.0",
-    "eslint-plugin-jest": "~22.7.1",
-    "jest": "~24.8.0",
+    "eslint-plugin-jest": "~22.7",
+    "jest": "~24.8",
     "ts-jest": "~24.0"
   }
 }
