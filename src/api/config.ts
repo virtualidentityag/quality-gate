@@ -34,16 +34,6 @@ export interface Config {
 
 type AnyConfig = Config['logic'] | Config['style'];
 
-const resolveConfigFile = (configFile?: string): string => {
-  if (configFile) {
-    if (existsSync(resolve(configFile))) {
-      return resolve(configFile);
-    }
-    throw new Error(`Cannot find configuration file: "${configFile}"`);
-  }
-  return resolve(CONFIG_DEFAULT);
-};
-
 const requireResolveType = (configFile: string, type?: OptionType): AnyConfig => (type
   // eslint-disable-next-line global-require,import/no-dynamic-require
   ? require(resolve(configFile))[type]
