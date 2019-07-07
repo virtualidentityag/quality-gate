@@ -34,16 +34,6 @@ export interface Config {
 
 type AnyConfig = Config['logic'] | Config['style'];
 
-const resolveConfigFile = (configFile?: string): string => {
-  if (configFile) {
-    if (existsSync(resolve(configFile))) {
-      return resolve(configFile);
-    }
-    throw new Error(`Cannot find configuration file: "${configFile}"`);
-  }
-  return resolve(CONFIG_DEFAULT);
-};
-
 const requireResolveType = (configFile: string, type?: OptionType): AnyConfig => (type
   // eslint-disable-next-line global-require,import/no-dynamic-require
   ? require(resolve(configFile))[type]
@@ -70,14 +60,18 @@ const getSingleConfig = (type: OptionType, configFile?: string): AnyConfig => {
 const isTsFile = (file: string): boolean => file.split('.').pop() === 'ts';
 
 export const getConfig = (configFile?: string): Config => {
-  let actualConfigFile = resolveConfigFile(configFile);
+  let actualConfigFile = '';
 
-  if (isTsFile(actualConfigFile)) {
-    const fileNameSplit = actualConfigFile.split('.');
-    fileNameSplit.pop();
+  if (configFile) {
+    actualConfigFile = resolve(configFile);
 
-    compile([actualConfigFile], tsConfig);
-    actualConfigFile = `${fileNameSplit.join('.')}.js`;
+    if (actualConfigFile && isTsFile(actualConfigFile)) {
+      const fileNameSplit = actualConfigFile.split('.');
+      fileNameSplit.pop();
+
+      compile([actualConfigFile], tsConfig);
+      actualConfigFile = `${fileNameSplit.join('.')}.js`;
+    }
   }
 
   return {
