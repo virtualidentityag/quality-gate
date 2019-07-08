@@ -34,13 +34,6 @@ export interface Config {
 
 type AnyConfig = Config['logic'] | Config['style'];
 
-const requireResolveType = (configFile: string, type?: OptionType): AnyConfig => (type
-  // eslint-disable-next-line global-require,import/no-dynamic-require
-  ? require(resolve(configFile))[type]
-  // eslint-disable-next-line global-require,import/no-dynamic-require
-  : require(resolve(configFile))
-);
-
 const getSingleConfig = (type: OptionType, configFile?: string): AnyConfig => {
   const fileName = type === 'logic' ? eslintConfigFile : stylelintConfigFile;
   // eslint-disable-next-line global-require,import/no-dynamic-require
