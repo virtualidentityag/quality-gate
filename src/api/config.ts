@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { Linter as Eslint } from 'eslint';
 // rewriting stylelint configuration as it does not contain '?' in all fields
 // import { Configuration as StyleOptions } from 'stylelint';
@@ -43,16 +43,19 @@ const requireResolveType = (configFile: string, type?: OptionType): AnyConfig =>
 
 const getSingleConfig = (type: OptionType, configFile?: string): AnyConfig => {
   const fileName = type === 'logic' ? eslintConfigFile : stylelintConfigFile;
-  const defaultObject = requireResolveType(CONFIG_DEFAULT, type);
+  // eslint-disable-next-line global-require,import/no-dynamic-require
+  const defaultObject = require(resolve(CONFIG_DEFAULT))[type];
 
   if (configFile) {
     if (existsSync(resolve(configFile))) {
-      return requireResolveType(configFile, type) || defaultObject;
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      return require(resolve(configFile))[type] || defaultObject;
     }
     throw new Error(`Cannot find configuration file: "${configFile}"`);
   }
   if (existsSync(resolve(fileName))) {
-    return requireResolveType(fileName);
+    // eslint-disable-next-line global-require,import/no-dynamic-require
+    return JSON.parse(readFileSync(resolve(fileName)).toString());
   }
   return defaultObject;
 };
