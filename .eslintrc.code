@@ -1,0 +1,3 @@
+{
+  "extends": "./config/logic/recommended.js"
+}
