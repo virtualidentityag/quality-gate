@@ -34,17 +34,16 @@ const getSingleConfig = (type: OptionType, configFile?: string): AnyConfig => {
 
 const isTsFile = (file: string): boolean => file.split('.').pop() === 'ts';
 
-export const getConfig = (configFile?: string): Config => {
+export const getConfig = (configFile: ParsedOptions['config']): Config => {
   let actualConfigFile = '';
 
   if (configFile) {
     actualConfigFile = resolve(configFile);
 
     if (actualConfigFile && isTsFile(actualConfigFile)) {
-      const fileNameSplit = actualConfigFile.split('.');
-      fileNameSplit.pop();
-
       compile([actualConfigFile], tsConfig);
+
+      const [, ...fileNameSplit] = actualConfigFile.split('.');
       actualConfigFile = `${fileNameSplit.join('.')}.js`;
     }
   }

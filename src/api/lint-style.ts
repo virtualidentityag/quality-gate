@@ -1,8 +1,7 @@
 import { lint, LinterOptions, LinterResult } from 'stylelint';
 
-import { Config } from './config';
 import { resolver } from './resolver';
-import { LintOptions, LintResult } from './types';
+import { ParsedOptions, Config, Result } from './types';
 
 interface CorrectedOptions extends LinterOptions {
   allowEmptyInput: boolean;
@@ -10,9 +9,9 @@ interface CorrectedOptions extends LinterOptions {
 
 const Stylelint = (options: Partial<CorrectedOptions>): Promise<LinterResult> => lint(options);
 
-export const lintStyle = (config: Config, options: LintOptions): Promise<LintResult['style']> => Stylelint({
+export const lintStyle = async (config: Config['style'], options: ParsedOptions): Promise<Result['style']> => Stylelint({
   fix: options.fix,
-  files: resolver(['.scss', '.css'], options.pattern),
-  config: config.style,
+  files: resolver(options.extStyle, options.pattern),
+  config,
   allowEmptyInput: true,
 });

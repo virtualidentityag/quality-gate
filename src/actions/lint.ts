@@ -1,11 +1,12 @@
-import { LintOptions, lint, report } from '../api';
+import { Options, lint, report } from '../api';
 import { Action } from './types';
 
-const lintAction = (options: LintOptions): Promise<void> => lint(options).then((result): void => {
-  if (report(result)) {
-    process.exit(-1);
-  }
-});
+const lintAction = (options: Partial<Options>): Promise<void> => lint(options)
+  .then((result): void => {
+    if (report(result)) {
+      process.exit(-1);
+    }
+  });
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const registerLint: Action = program => program
