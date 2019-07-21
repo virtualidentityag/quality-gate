@@ -1,6 +1,6 @@
-import { lint, report, LintOptions } from '../../src/api';
+import { lint, report, Options } from '../../src/api';
 
-export const testProject = (options: LintOptions, errors: string[] = []): void => {
+export const testProject = (options: Options, errors: string[] = []): void => {
   describe(`pattern "${options.pattern}"`, (): void => {
     let logger: jest.Mock<Console['log']>;
 

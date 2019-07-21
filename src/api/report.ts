@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 import * as Stylelint from 'stylelint';
 
-import { LintResult } from './types';
+import { Result } from './types';
 
 interface ErrorContainer {
   errorCount?: number;
@@ -66,7 +66,7 @@ const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
   false,
 );
 
-export const report = ({ logic, style }: LintResult, logger?: Console['log']): boolean => {
+export const report = ({ logic, style }: Result, logger?: Console['log']): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 

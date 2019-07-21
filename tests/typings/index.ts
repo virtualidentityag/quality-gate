@@ -1,4 +1,4 @@
-import { Config } from '../../src/api/config';
+import { Config } from '../../src/api';
 import * as logic from '../../config/logic/recommended';
 import * as style from '../../config/style/recommended';
 

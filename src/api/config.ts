@@ -1,36 +1,15 @@
 import { resolve } from 'path';
 import { existsSync, readFileSync } from 'fs';
-import { Linter as Eslint } from 'eslint';
-// rewriting stylelint configuration as it does not contain '?' in all fields
-// import { Configuration as StyleOptions } from 'stylelint';
 
 import * as tsConfig from '../../tsconfig.json';
 import { compile } from '../compile';
+import { ParsedOptions, Config } from './types';
 
 const CONFIG_DEFAULT = `${__dirname}/../../index.js`;
 const eslintConfigFile = '.eslintrc';
 const stylelintConfigFile = '.stylelintrc';
 
 type OptionType = 'logic' | 'style';
-
-interface LogicOptions extends Eslint.Config {
-  extends?: string[];
-}
-
-export interface Config {
-  logic?: LogicOptions;
-  // rewriting stylelint configuration as it does not contain '?' in all fields
-  // style?: StyleOptions;
-  style?: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    rules?: Record<string, any>;
-    extends?: string | string[];
-    plugins?: string[];
-    processors?: string[];
-    ignoreFiles?: string | string[];
-    defaultSeverity?: 'warning' | 'error';
-  };
-}
 
 type AnyConfig = Config['logic'] | Config['style'];
 
