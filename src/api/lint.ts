@@ -40,6 +40,6 @@ export const lint = async (options: Partial<Options>): Promise<Partial<Result>> 
 
   return Promise.all(linterPromises).then((values): Partial<Result> => ({
     ...(!parsedOptions.skipLogic ? { logic: values[0] as Result['logic'] } : {}),
-    ...(stylePosition >= 0 ? { style: values[stylePosition] as Result['style'] } : {}),
+    ...(values[stylePosition] ? { style: values[stylePosition] as Result['style'] } : {}),
   }));
 };
