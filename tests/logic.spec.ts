@@ -1,3 +1,4 @@
+import { defaultOptions } from '../src/api';
 import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
 
 describe('logic linting', (): void => {
@@ -5,8 +6,7 @@ describe('logic linting', (): void => {
 
   testProject(
     {
-      javascript: true,
-      typescript: true,
+      ...defaultOptions,
       pattern: `${PROJECTS_PATH}/logic-fail`,
     },
     [
@@ -20,8 +20,7 @@ describe('logic linting', (): void => {
   );
 
   testProject({
-    javascript: true,
-    typescript: true,
+    ...defaultOptions,
     pattern: `${PROJECTS_PATH}/logic-pass`,
   });
 });

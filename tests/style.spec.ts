@@ -1,3 +1,4 @@
+import { defaultOptions } from '../src/api';
 import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
 
 describe('style linting', (): void => {
@@ -5,7 +6,7 @@ describe('style linting', (): void => {
 
   testProject(
     {
-      sass: true,
+      ...defaultOptions,
       pattern: `${PROJECTS_PATH}/style-fail`,
     },
     [
@@ -23,7 +24,7 @@ describe('style linting', (): void => {
   );
 
   testProject({
-    sass: true,
+    ...defaultOptions,
     pattern: `${PROJECTS_PATH}/style-pass`,
   });
 });

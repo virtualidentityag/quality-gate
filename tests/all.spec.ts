@@ -1,3 +1,4 @@
+import { defaultOptions } from '../src/api';
 import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
 
 describe('all linting', (): void => {
@@ -5,9 +6,7 @@ describe('all linting', (): void => {
 
   testProject(
     {
-      javascript: true,
-      typescript: true,
-      sass: true,
+      ...defaultOptions,
       pattern: `${PROJECTS_PATH}/all-fail`,
     },
     [
@@ -31,6 +30,7 @@ describe('all linting', (): void => {
   );
 
   testProject({
+    ...defaultOptions,
     pattern: `${PROJECTS_PATH}/all-pass`,
   });
 });

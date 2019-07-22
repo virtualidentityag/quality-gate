@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 import * as Stylelint from 'stylelint';
 
-import { LintResult } from './types';
+import { Result } from './types';
 
 interface ErrorContainer {
   errorCount?: number;
@@ -33,16 +33,20 @@ const textLog = (
   column: string,
   message: string,
   rule?: string,
-): string => `${file} [${line}, ${column}]: ${message}${rule ? ` (${rule})` : ''}`;
+): string => `${file}${line && column ? ` [${line}, ${column}]` : ''}: ${message}${rule ? ` (${rule})` : ''}`;
 
 const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Console['log']): void => report.results
-  .forEach((error): void => error.messages.forEach((warning): void => logger(textLog(
-    error.filePath.replace(projectPath, '.'),
-    `${warning.line}`,
-    `${warning.column}`,
-    warning.message,
-    `${warning.ruleId}`,
-  ))));
+  .forEach((error): void => error.messages.forEach((warning): void => {
+    if (warning.ruleId) {
+      logger(textLog(
+        error.filePath.replace(projectPath, '.'),
+        `${warning.line || ''}`,
+        `${warning.column || ''}`,
+        warning.message,
+        `${warning.ruleId || ''}`,
+      ));
+    }
+  }));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -66,7 +70,7 @@ const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
   false,
 );
 
-export const report = ({ logic, style }: LintResult, logger?: Console['log']): boolean => {
+export const report = ({ logic, style }: Result, logger?: Console['log']): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 

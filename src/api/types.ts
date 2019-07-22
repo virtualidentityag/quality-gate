@@ -1,18 +1,36 @@
-import { CLIEngine as Eslint } from 'eslint';
-import * as Stylelint from 'stylelint';
+import { Linter, CLIEngine } from 'eslint';
+import { Configuration, LinterResult } from 'stylelint';
 
-export interface LintOptions {
-  config?: string;
-  pattern?: string;
-  typescript?: boolean;
-  javascript?: boolean;
-  includeJsx?: boolean;
-  sass?: boolean;
-  fix?: boolean;
-  spec?: boolean;
+export interface Options {
+  config: string;
+  pattern: string;
+  fix: boolean;
+  tests: boolean;
+  testExtension: string;
+  extLogic: string;
+  extStyle: string;
 }
 
-export interface LintResult {
-  logic?: Eslint.LintReport;
-  style?: Stylelint.LinterResult;
+export interface ParsedOptions {
+  config: string | false;
+  pattern: string[];
+  fix: boolean;
+  tests: boolean;
+  testExtension: string;
+  extLogic: string[];
+  extStyle: string[];
+}
+
+export interface PartialLogicOptions extends Linter.Config {
+  extends?: string[];
+}
+
+export interface Config {
+  logic?: PartialLogicOptions;
+  style?: Partial<Configuration>;
+}
+
+export interface Result {
+  logic: CLIEngine.LintReport;
+  style: LinterResult;
 }

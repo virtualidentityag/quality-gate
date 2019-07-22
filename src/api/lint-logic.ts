@@ -1,27 +1,32 @@
 import { CLIEngine as Eslint } from 'eslint';
 
-import { Config } from './config';
 import { resolver } from './resolver';
-import { LintOptions, LintResult } from './types';
-import { getExtensions, getTestExtensions } from './extensions';
+import { ParsedOptions, Config, Result } from './types';
 
-export const lintLogic = (config: Config, options: LintOptions): Promise<LintResult['logic']> => {
-  const extensions = getExtensions(options.typescript, options.javascript, options.includeJsx);
-  const testExtensions = getTestExtensions(extensions);
-  const baseConfig: Eslint.Options['baseConfig'] = {
-    ...(options.includeJsx ? { parserOptions: { ecmaFeatures: { jsx: true } } } : {}),
-    ...config.logic,
-  };
-  const extensionsToBeUsed = !options.spec ? extensions : testExtensions;
-  const ignorePattern = !options.spec ? testExtensions.map((ext: string): string => `*${ext}`) : undefined;
+const getExtensions = (options: ParsedOptions): string[] => (options.tests
+  ? options.extLogic.map((ext): string => `${options.testExtension}${ext}`)
+  : options.extLogic);
 
-  return new Promise<LintResult['logic']>((resolve): void => resolve(new Eslint({
+const jsxOptions = { parserOptions: { ecmaFeatures: { jsx: true } } };
+
+const shouldIncludeJsxOptions = (extensions: string[]): boolean => ['.jsx', '.tsx']
+  .some((ext): boolean => extensions.includes(ext));
+
+export const lintLogic = async (config: Config['logic'], options: ParsedOptions): Promise<Result['logic']> => {
+  const extensions = getExtensions(options);
+
+  return new Promise<Result['logic']>((resolve): void => resolve(new Eslint({
     useEslintrc: false,
-    baseConfig,
+    baseConfig: {
+      ...(shouldIncludeJsxOptions(options.extLogic) ? jsxOptions : {}),
+      ...config,
+    },
     fix: options.fix,
-    extensions: extensionsToBeUsed,
-    ignorePattern,
-  }).executeOnFiles(resolver(extensionsToBeUsed, options.pattern)))).then((result): LintResult['logic'] => {
+    extensions,
+    ignorePattern: !options.tests
+      ? extensions.map((ext): string => `*${options.testExtension}${ext}`)
+      : undefined,
+  }).executeOnFiles(resolver(extensions, options.pattern)))).then((result): Result['logic'] => {
     if (result) {
       Eslint.outputFixes(result);
     }
