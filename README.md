@@ -7,6 +7,9 @@ and the recommended linting rules for typescript and sass. It can run on either 
 files, ignoring the other automatically. Have a look at the commands and options provided for a
 better understanding of what you can do with it.
 
+Note that this application uses `browserslist`, so you should think about adding a `.browserslistrc`
+file or add the config on you `package.json` (see [this][link-browserslist-config]).
+
 ## Installing
 - `npm i -D @biotope/quality-gate`
 
@@ -173,6 +176,7 @@ Example:
 - `biotope-quality-gate --help` - will print info on available options
 
 
+[link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
 [link-eslint-disable]: https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments
 [link-stylelint-config]: https://stylelint.io/user-guide/configuration/#the-configuration-object
