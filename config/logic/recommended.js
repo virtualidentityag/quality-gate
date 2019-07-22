@@ -3,6 +3,7 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
+    'plugin:compat/recommended',
   ],
   rules: {
     // Project-specific Overrides
