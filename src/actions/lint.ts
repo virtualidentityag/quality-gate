@@ -17,4 +17,6 @@ export const registerLint: Action = program => program
   .option('-e, --test-extension <extension>', 'Specify which extension to use on test files')
   .option('-l, --ext-logic <extensions>', 'Override default logic extensions (comma separated)')
   .option('-s, --ext-style <extensions>', 'Override default style extensions (comma separated)')
+  .option('--skip-logic', 'Skip logic linting')
+  .option('--skip-style', 'Skip style linting')
   .action(lintAction);

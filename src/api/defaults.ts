@@ -8,4 +8,6 @@ export const defaultOptions: Options = {
   testExtension: '.spec',
   extLogic: '.js,.ts',
   extStyle: '.css,.scss',
+  skipLogic: false,
+  skipStyle: false,
 };

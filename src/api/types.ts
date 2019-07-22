@@ -9,6 +9,8 @@ export interface Options {
   testExtension: string;
   extLogic: string;
   extStyle: string;
+  skipLogic: boolean;
+  skipStyle: boolean;
 }
 
 export interface ParsedOptions {
@@ -19,6 +21,8 @@ export interface ParsedOptions {
   testExtension: string;
   extLogic: string[];
   extStyle: string[];
+  skipLogic: boolean;
+  skipStyle: boolean;
 }
 
 export interface PartialLogicOptions extends Linter.Config {
