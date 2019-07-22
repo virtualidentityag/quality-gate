@@ -6,8 +6,10 @@ module.exports = {
   ],
   plugins: [
     'stylelint-scss',
+    'stylelint-no-unsupported-browser-features',
   ],
   rules: {
     'number-leading-zero': 'never',
+    'plugin/no-unsupported-browser-features': true,
   },
 };
