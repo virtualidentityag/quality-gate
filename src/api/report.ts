@@ -70,7 +70,7 @@ const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
   false,
 );
 
-export const report = ({ logic, style }: Result, logger?: Console['log']): boolean => {
+export const report = ({ logic, style }: Partial<Result>, logger?: Console['log']): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 
