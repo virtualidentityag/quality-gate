@@ -21,6 +21,7 @@ describe('logic linting', (): void => {
 
   testProject({
     ...defaultOptions,
+    skipStyle: true,
     pattern: `${PROJECTS_PATH}/logic-pass`,
   });
 });

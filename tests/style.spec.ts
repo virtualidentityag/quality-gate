@@ -25,6 +25,7 @@ describe('style linting', (): void => {
 
   testProject({
     ...defaultOptions,
+    skipLogic: true,
     pattern: `${PROJECTS_PATH}/style-pass`,
   });
 });
