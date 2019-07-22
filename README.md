@@ -132,7 +132,7 @@ the logic extensions (`.spec` by default). This option allows you to set another
 prefix. By default, test files are identified by having `.spec.ts` and `.spec.js` extensions.
 To use this option you can add `--test-extension` or through the shorthanded notation `-e`.
 
-Example:
+Examples:
 - `biotope-quality-gate --test-extension .my-spec-prefix` - will ignore files ending on `.my-spec-prefix.js` and `.my-spec-prefix.ts`
 - `biotope-quality-gate --tests --test-extension .my-spec-prefix` - will only lint files ending on `.my-spec-prefix.js` and `.my-spec-prefix.ts`
 
@@ -143,7 +143,7 @@ predefined extensions. You can provide them as a comma separated string.
 To use these options you can add `--ext-logic` and/or `--ext-style` or through their shorthanded
 notations `-l` and `-s`, respectively.
 
-Example:
+Examples:
 - `biotope-quality-gate --ext-logic .js,.jsx` - will lint `js`, `jsx`, `scss` and `css` files
 - `biotope-quality-gate --ext-style .sass` - will lint `js`, `ts` and `sass` files
 
@@ -160,7 +160,7 @@ Example:
 This option will print all the above options to the console.
 To use this option you can add `--help` or through the shorthanded notation `-h`.
 
-Examples:
+Example:
 - `biotope-quality-gate --help` - will print info on available options
 
 
