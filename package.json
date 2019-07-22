@@ -9,8 +9,7 @@
     "url": "https://github.com/biotope/biotope-quality-gate.git"
   },
   "engines": {
-    "node": ">=8.15.0 <9.0.0 || >=10.15.0",
-    "npm": ">=6.7.0"
+    "node": ">=10.15.0"
   },
   "bin": {
     "biotope-quality-gate": "./lib/index.js"
