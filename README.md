@@ -147,7 +147,7 @@ Examples:
 - `biotope-quality-gate --ext-logic .js,.jsx` - will lint `js`, `jsx`, `scss` and `css` files
 - `biotope-quality-gate --ext-style .sass` - will lint `js`, `ts` and `sass` files
 
-### Fix
+### Fix (`--fix`)
 This option will try to fix any errors that it finds automatically. If there are errors it finds but
 cannot fix them, it will report them as usual.
 Typically, this option should not be used on any automated tests.
@@ -156,7 +156,7 @@ To use this option you can add `--fix` or through the shorthanded notation `-f`.
 Example:
 - `biotope-quality-gate --fix`
 
-### Help
+### Help (`--help`)
 This option will print all the above options to the console.
 To use this option you can add `--help` or through the shorthanded notation `-h`.
 
