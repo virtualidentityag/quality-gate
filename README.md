@@ -3,7 +3,7 @@
 Coding quality and standards enforcer on biotope projects.
 
 This app lints your `.js`, `.ts`, `.css` and `.scss` files according to the `airbnb-base` ruleset
-and the reccomended linting rules for typescript and sass. It can run on either code files or test
+and the recommended linting rules for typescript and sass. It can run on either code files or test
 files, ignoring the other automatically. Have a look at the commands and options provided for a
 better understanding of what you can do with it.
 
