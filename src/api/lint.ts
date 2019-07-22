@@ -18,17 +18,28 @@ const parseOptions = (options: Partial<Options>): ParsedOptions => ({
   testExtension: options.testExtension || defaultOptions.testExtension,
   extLogic: toArray(options.extLogic || defaultOptions.extLogic),
   extStyle: toArray(options.extStyle || defaultOptions.extStyle),
+  skipLogic: toBoolean(options.skipLogic, defaultOptions.skipLogic),
+  skipStyle: toBoolean(options.skipStyle, defaultOptions.skipStyle),
 });
 
-export const lint = async (options: Partial<Options>): Promise<Result> => {
+export const lint = async (options: Partial<Options>): Promise<Partial<Result>> => {
   const parsedOptions = parseOptions(options);
   const { logic, style } = getConfig(parsedOptions.config);
 
-  return Promise.all([
-    lintLogic(logic, parsedOptions),
-    lintStyle(style, parsedOptions),
-  ]).then(([logicResult, styleResult]): Result => ({
-    logic: logicResult as Result['logic'],
-    style: styleResult as Result['style'],
+  const linterPromises: Promise<Result['logic'] | Result['style']>[] = [];
+  let stylePosition = 0;
+  if (!parsedOptions.skipLogic) {
+    linterPromises.push(lintLogic(logic, parsedOptions));
+    stylePosition = 1;
+  }
+  if (!parsedOptions.skipStyle) {
+    linterPromises.push(lintStyle(style, parsedOptions));
+  } else {
+    stylePosition = -1;
+  }
+
+  return Promise.all(linterPromises).then((values): Partial<Result> => ({
+    ...(!parsedOptions.skipLogic ? { logic: values[0] as Result['logic'] } : {}),
+    ...(values[stylePosition] ? { style: values[stylePosition] as Result['style'] } : {}),
   }));
 };
