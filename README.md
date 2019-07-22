@@ -147,6 +147,15 @@ Examples:
 - `biotope-quality-gate --ext-logic .js,.jsx` - will lint `js`, `jsx`, `scss` and `css` files
 - `biotope-quality-gate --ext-style .sass` - will lint `js`, `ts` and `sass` files
 
+### Skip (`--skip-logic` and `--skip-style`)
+This option allows you to tell the application to skip logic or style linting.
+To use these options you can add `--skip-logic` or `--skip-style`. No shorthanded commands are
+available.
+
+Examples:
+- `biotope-quality-gate --skip-logic` - will only lint `scss` and `css` files
+- `biotope-quality-gate --skip-style` - will only lint `js`, `ts` files
+
 ### Fix (`--fix`)
 This option will try to fix any errors that it finds automatically. If there are errors it finds but
 cannot fix them, it will report them as usual.
