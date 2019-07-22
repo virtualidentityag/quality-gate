@@ -43,8 +43,8 @@ export const getConfig = (configFile: ParsedOptions['config']): Config => {
     if (actualConfigFile && isTsFile(actualConfigFile)) {
       compile([actualConfigFile], tsConfig);
 
-      const [, ...fileNameSplit] = actualConfigFile.split('.');
-      actualConfigFile = `${fileNameSplit.join('.')}.js`;
+      const [, ...fileNameSplit] = actualConfigFile.split('.').reverse();
+      actualConfigFile = `${fileNameSplit.reverse().join('.')}.js`;
     }
   }
 
