@@ -2,7 +2,7 @@ import { lint, LinterOptions, LinterResult } from 'stylelint';
 
 import { resolver } from './resolver';
 import { ParsedOptions, Config, Result } from './types';
-import { filenames } from './rules';
+import { customRules } from './custom-rules';
 
 interface CorrectedLinterOptions extends LinterOptions {
   allowEmptyInput?: boolean;
@@ -19,7 +19,7 @@ export const lintStyle = async (config: Config['style'], options: ParsedOptions)
     config,
     allowEmptyInput: true,
   }).then((result): LinterResult => {
-    filenames.style(files, result);
+    customRules('style', files, result);
     return result;
   });
 };
