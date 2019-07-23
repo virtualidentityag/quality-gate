@@ -2,6 +2,7 @@ import { CLIEngine as Eslint } from 'eslint';
 
 import { resolver } from './resolver';
 import { ParsedOptions, Config, Result } from './types';
+import { filenames } from './rules';
 
 const getExtensions = (options: ParsedOptions): string[] => (options.tests
   ? options.extLogic.map((ext): string => `${options.testExtension}${ext}`)
@@ -14,6 +15,7 @@ const shouldIncludeJsxOptions = (extensions: string[]): boolean => ['.jsx', '.ts
 
 export const lintLogic = async (config: Config['logic'], options: ParsedOptions): Promise<Result['logic']> => {
   const extensions = getExtensions(options);
+  const files = resolver(extensions, options.pattern);
 
   return new Promise<Result['logic']>((resolve): void => resolve(new Eslint({
     useEslintrc: false,
@@ -26,8 +28,10 @@ export const lintLogic = async (config: Config['logic'], options: ParsedOptions)
     ignorePattern: !options.tests
       ? extensions.map((ext): string => `*${options.testExtension}${ext}`)
       : undefined,
-  }).executeOnFiles(resolver(extensions, options.pattern)))).then((result): Result['logic'] => {
-    if (result) {
+  }).executeOnFiles(files))).then((result): Result['logic'] => {
+    filenames.logic(files, result);
+
+    if (result.fixableErrorCount + result.fixableWarningCount) {
       Eslint.outputFixes(result);
     }
     return result;
