@@ -20,7 +20,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
 
     // eslint-plugin-filenames - Force kebab-case file naming
-    'filenames/match-regex': ['error', '^[a-z-]+$', true],
+    'filenames/match-regex': ['error', '^[a-z-.]+$', true],
   },
   env: {
     browser: true,
