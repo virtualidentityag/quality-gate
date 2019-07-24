@@ -37,11 +37,13 @@
     "commander": "~2.20",
     "eslint": "~6.1",
     "eslint-config-airbnb-base": "~13.2",
+    "eslint-plugin-compat": "~3.3",
     "eslint-plugin-import": "~2.18",
     "glob": "~7.1",
     "stylelint": "~10.1",
     "stylelint-config-recommended-scss": "~3.3",
     "stylelint-config-standard": "~18.3",
+    "stylelint-no-unsupported-browser-features": "~3.0",
     "stylelint-scss": "~3.9",
     "typescript": "~3.5"
   },

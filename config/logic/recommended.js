@@ -2,7 +2,11 @@
 module.exports = {
   extends: [
     'airbnb-base',
+    'plugin:import/errors',
+    'plugin:import/warnings',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
+    'plugin:compat/recommended',
   ],
   rules: {
     // Project-specific Overrides
