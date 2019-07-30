@@ -176,6 +176,12 @@ To use this option you can add `--help` or through the shorthanded notation `-h`
 Example:
 - `biotope-quality-gate --help` - will print info on available options
 
+## Contributing
+PRs are very much welcome! We encourage you to fork the project and implement your own feature or
+fix that nasty bug that's bugging eveyone. You can just create a PR afterwards. If you just don't
+have the time, we also welcome everyone to create issues with feature requests or bugs, just be sure
+that your request/bug is within the scope of this project.
+
 
 [link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
