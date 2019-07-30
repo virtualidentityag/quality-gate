@@ -1,7 +1,7 @@
 import { defaultOptions } from '../src/api';
 import { PROJECTS_PATH, testProject, mockConsole } from './helpers';
 
-describe('style linting', (): void => {
+describe('test linting', (): void => {
   mockConsole();
 
   testProject(
@@ -12,6 +12,7 @@ describe('style linting', (): void => {
       pattern: `${PROJECTS_PATH}/test-fail`,
     },
     [
+      `./${PROJECTS_PATH}/test-fail/wrongName.my-spec.ts: File path is error-prone. Use kebab-case for folder names and files. (@biotope-quality-gate/filenames)`,
       `./${PROJECTS_PATH}/test-fail/index.my-spec.ts [2, 9]: There should be no spaces inside this paren. (space-in-parens)`,
       `./${PROJECTS_PATH}/test-fail/index.my-spec.ts [3, 1]: Expected indentation of 0 spaces but found 1. (@typescript-eslint/indent)`,
       `./${PROJECTS_PATH}/test-fail/index.my-spec.ts [3, 2]: Opening curly brace does not appear on the same line as controlling statement. (brace-style)`,

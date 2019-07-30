@@ -38,3 +38,11 @@ export interface Result {
   logic: CLIEngine.LintReport;
   style: LinterResult;
 }
+
+export interface StylelintWarning {
+  line: number;
+  column: number;
+  rule: string;
+  severity: 'error' | 'warning';
+  text: string;
+}

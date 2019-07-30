@@ -2,22 +2,14 @@ import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 import * as Stylelint from 'stylelint';
 
-import { Result } from './types';
+import { fixStylelintTyping } from './fix-stylelint-warning';
+import { Result, StylelintWarning } from './types';
 
 interface ErrorContainer {
   errorCount?: number;
   warningCount?: number;
   errored?: boolean;
 }
-
-interface StylelintWarning {
-  line: number;
-  column: number;
-  text: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fixStylelintTyping = (warnings: string[]): StylelintWarning[] => (warnings as any);
 
 const sortByLineColumn = (warnings: string[]): StylelintWarning[] => fixStylelintTyping(warnings)
   .sort((left: StylelintWarning, right: StylelintWarning): number => {
@@ -57,8 +49,8 @@ const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   .forEach(result => result.warnings.forEach((warning): void => logger(textLog(
     result.source.replace(projectPath, '.'),
-    `${warning.line}`,
-    `${warning.column}`,
+    `${warning.line || ''}`,
+    `${warning.column || ''}`,
     warning.text,
   ))));
 

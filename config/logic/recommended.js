@@ -8,6 +8,9 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:compat/recommended',
   ],
+  plugins: [
+    'filenames',
+  ],
   rules: {
     // Project-specific Overrides
     'import/no-unresolved': 'off', // FIXME should be ignoring just '\\.(s?)css$', instead of being 'off'
@@ -19,6 +22,9 @@ module.exports = {
 
     // Disabled Ts rules (to let AirBnB rules deal with it)
     '@typescript-eslint/no-var-requires': 'off',
+
+    // eslint-plugin-filenames - Force kebab-case file naming
+    'filenames/match-regex': ['error', '^[a-z-.]+$', true],
   },
   env: {
     browser: true,
