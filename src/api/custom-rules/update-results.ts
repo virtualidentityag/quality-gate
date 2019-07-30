@@ -2,8 +2,6 @@ import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 import * as Stylelint from 'stylelint';
 
-import { unfixStylelintTyping } from '../fix-stylelint-warning';
-
 export interface CustomError {
   file: string;
   message: string;
@@ -34,13 +32,13 @@ const createStyleError = (error: CustomError): Stylelint.LintResult => ({
   source: resolve(error.file),
   errored: error.isError,
   ignored: false,
-  warnings: unfixStylelintTyping([{
+  warnings: [{
     line: error.line || 0,
     column: error.column || 0,
     rule: error.rule || '',
     severity: error.isError ? 'error' : 'warning',
     text: `${error.message}${error.rule ? ` (${error.rule})` : ''}`,
-  }]),
+  }],
   deprecations: [''],
   invalidOptionWarnings: [''],
 });
