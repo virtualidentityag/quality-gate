@@ -169,6 +169,15 @@ To use this option you can add `--fix` or through the shorthanded notation `-f`.
 Example:
 - `biotope-quality-gate --fix`
 
+### Ignore Warnings (`--ignore-warnings`)
+By default, all warnings are treated as errors and will make the process fail. By using this option
+you can disable this behaviour and allow warnings to pass. If there are warnings when using this
+option, they will be reported as usual.
+To use this option you can add `--ignore-warnings` or through the shorthanded notation `-w`.
+
+Example:
+- `biotope-quality-gate --ignore-warnings`
+
 ### Help (`--help`)
 This option will print all the above options to the console.
 To use this option you can add `--help` or through the shorthanded notation `-h`.

@@ -11,6 +11,7 @@ export interface Options {
   extStyle: string;
   skipLogic: boolean;
   skipStyle: boolean;
+  ignoreWarnings: boolean;
 }
 
 export interface ParsedOptions {

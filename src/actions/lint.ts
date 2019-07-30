@@ -3,7 +3,8 @@ import { Action } from './types';
 
 const lintAction = (options: Partial<Options>): Promise<void> => lint(options)
   .then((result): void => {
-    if (report(result)) {
+    const shouldFail = report(result, !!options.ignoreWarnings);
+    if (shouldFail) {
       process.exit(-1);
     }
   });
@@ -17,6 +18,7 @@ export const registerLint: Action = program => program
   .option('-e, --test-extension <extension>', 'Specify which extension to use on test files')
   .option('-l, --ext-logic <extensions>', 'Override default logic extensions (comma separated)')
   .option('-s, --ext-style <extensions>', 'Override default style extensions (comma separated)')
+  .option('-w, --ignore-warnings', 'Do not fail on warnings')
   .option('--skip-logic', 'Skip logic linting')
   .option('--skip-style', 'Skip style linting')
   .action(lintAction);

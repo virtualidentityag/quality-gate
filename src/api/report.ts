@@ -53,28 +53,30 @@ const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger
     warning.text,
   ))));
 
-const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
+const hasAnyErrors = (
+  results: ErrorContainer[],
+  ignoreWarnings: boolean,
+): boolean => results.reduce(
   (
     value: boolean,
-    { errorCount, errored }: ErrorContainer,
-  ): boolean => value || !!errorCount || !!errored,
+    { errorCount, warningCount, errored }: ErrorContainer,
+  ): boolean => value || !!errorCount || !!errored || (!ignoreWarnings && !!warningCount),
   false,
 );
 
-export const report = ({ logic, style }: Partial<Result>, logger?: Console['log']): boolean => {
+// eslint-disable-next-line no-console
+export const report = ({ logic, style }: Partial<Result>, ignoreWarnings: boolean, logger: Console['log'] = console.log): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 
   if (logic) {
-    // eslint-disable-next-line no-console
-    reportLogic(logic, projectPath, logger || console.log);
-    hasErrors = hasErrors || hasAnyErrors(logic.results);
+    reportLogic(logic, projectPath, logger);
+    hasErrors = hasErrors || hasAnyErrors(logic.results, ignoreWarnings);
   }
 
   if (style) {
-    // eslint-disable-next-line no-console
-    reportStyle(style, projectPath, logger || console.log);
-    hasErrors = hasErrors || hasAnyErrors(style.results);
+    reportStyle(style, projectPath, logger);
+    hasErrors = hasErrors || hasAnyErrors(style.results, ignoreWarnings);
   }
 
   return hasErrors;
