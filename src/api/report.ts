@@ -2,8 +2,7 @@ import { resolve } from 'path';
 import { CLIEngine as Eslint } from 'eslint';
 import * as Stylelint from 'stylelint';
 
-import { fixStylelintTyping } from './fix-stylelint-warning';
-import { Result, StylelintWarning } from './types';
+import { Result } from './types';
 
 interface ErrorContainer {
   errorCount?: number;
@@ -11,8 +10,8 @@ interface ErrorContainer {
   errored?: boolean;
 }
 
-const sortByLineColumn = (warnings: string[]): StylelintWarning[] => fixStylelintTyping(warnings)
-  .sort((left: StylelintWarning, right: StylelintWarning): number => {
+const sortByLineColumn = (warnings: Stylelint.Warning[]): Stylelint.Warning[] => warnings
+  .sort((left: Stylelint.Warning, right: Stylelint.Warning): number => {
     if (left.line !== right.line) {
       return left.line > right.line ? 1 : -1;
     }
