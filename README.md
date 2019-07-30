@@ -40,8 +40,8 @@ root of you project. Since these can also be used for IDE integration, this type
 configuration is prefered. If you still want to create a custom config file with javascript or
 typescript, this option allows you to do just that. The application includes a set of rules to apply
 when none are provided. They are located at `/config/<logic|style>/recommended.js`. You can use them
-on your custom config file or to extend your `.eslintrc` and `.stylelintrc` files as well. Remember
-to abide by the `eslint` and `stylelint` config. For more info, [read this][link-eslint-config] and
+on your custom config file or to extend your `.eslintrc` and `.stylelintrc` files. Remember to abide
+by the `eslint` and `stylelint` configs. For more info, [read this][link-eslint-config] and
 [this][link-stylelint-config].
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
 
