@@ -5,7 +5,8 @@ import { Action } from './types';
 
 const lintAction = (options: Partial<Options>): Promise<void> => lint(options)
   .then((result): void => {
-    const shouldFail = report(result, !!options.ignoreWarnings);
+    const shouldFail = report(result);
+
     if (shouldFail) {
       process.exit(-1);
     }

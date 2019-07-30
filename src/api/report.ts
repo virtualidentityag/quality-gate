@@ -63,18 +63,18 @@ const hasAnyErrors = (
 );
 
 // eslint-disable-next-line no-console
-export const report = ({ logic, style }: Partial<Result>, ignoreWarnings: boolean, logger: Console['log'] = console.log): boolean => {
+export const report = ({ options, logic, style }: Result, logger: Console['log'] = console.log): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 
   if (logic) {
     reportLogic(logic, projectPath, logger);
-    hasErrors = hasErrors || hasAnyErrors(logic.results, ignoreWarnings);
+    hasErrors = hasErrors || hasAnyErrors(logic.results, options.ignoreWarnings);
   }
 
   if (style) {
     reportStyle(style, projectPath, logger);
-    hasErrors = hasErrors || hasAnyErrors(style.results, ignoreWarnings);
+    hasErrors = hasErrors || hasAnyErrors(style.results, options.ignoreWarnings);
   }
 
   return hasErrors;

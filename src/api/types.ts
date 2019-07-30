@@ -24,6 +24,7 @@ export interface ParsedOptions {
   extStyle: string[];
   skipLogic: boolean;
   skipStyle: boolean;
+  ignoreWarnings: boolean;
 }
 
 export interface PartialLogicOptions extends Linter.Config {
@@ -36,6 +37,7 @@ export interface Config {
 }
 
 export interface Result {
-  logic: CLIEngine.LintReport;
-  style: LinterResult;
+  options: ParsedOptions;
+  logic?: CLIEngine.LintReport;
+  style?: LinterResult;
 }
