@@ -1,3 +1,5 @@
+import { Command } from 'commander';
+
 import { Options, lint, report } from '../api';
 import { Action } from './types';
 
@@ -9,8 +11,7 @@ const lintAction = (options: Partial<Options>): Promise<void> => lint(options)
     }
   });
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const registerLint: Action = program => program
+export const registerLint: Action = (program): Command => program
   .option('-c, --config <file>', 'Specify a configuration file (ts or js)')
   .option('-p, --pattern <patterns>', 'Specify patterns to run against (comma separated)')
   .option('-f, --fix', 'Try to fix any erros found')

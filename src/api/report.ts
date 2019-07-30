@@ -40,13 +40,11 @@ const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Con
   }));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  .map(result => ({
+  .map((result): Stylelint.LintResult => ({
     ...result,
     warnings: sortByLineColumn(result.warnings),
   }))
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  .forEach(result => result.warnings.forEach((warning): void => logger(textLog(
+  .forEach((result): void => result.warnings.forEach((warning): void => logger(textLog(
     result.source.replace(projectPath, '.'),
     `${warning.line || ''}`,
     `${warning.column || ''}`,
