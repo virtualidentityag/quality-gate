@@ -161,9 +161,9 @@ Examples:
 - `biotope-quality-gate --skip-style` - will only lint `js`, `ts` files
 
 ### Fix (`--fix`)
-This option will try to fix any errors that it finds automatically. If there are errors it finds but
-cannot fix them, it will report them as usual.
-Typically, this option should not be used on any automated tests.
+This option will try to fix any errors that it finds automatically before reporting. If there are
+any unfixable errors, it will report them as usual. Typically, this option should not be used on any
+automated tests.
 To use this option you can add `--fix` or through the shorthanded notation `-f`.
 
 Example:
