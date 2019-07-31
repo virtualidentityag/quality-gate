@@ -17,7 +17,12 @@ const shouldIncludeJsxOptions = (extensions: string[]): boolean => jsxExtensions
 
 export const lintLogic = async (config: Config['logic'], options: ParsedOptions): Promise<Eslint.LintReport> => {
   const extensions = getExtensions(options);
+  const ignorePatternExtentions = extensions.map((ext): string => `${options.testExtension}${ext}$`);
   const files = resolver(extensions, options.pattern);
+  const filteredFiles = !options.tests
+    ? files.filter((file): boolean => !ignorePatternExtentions
+      .some((ext): boolean => (new RegExp(ext)).test(file)))
+    : files;
 
   return new Promise<Eslint.LintReport>((resolve): void => resolve(new Eslint({
     useEslintrc: false,
@@ -27,10 +32,7 @@ export const lintLogic = async (config: Config['logic'], options: ParsedOptions)
     },
     fix: options.fix,
     extensions,
-    ignorePattern: !options.tests
-      ? extensions.map((ext): string => `*${options.testExtension}${ext}`)
-      : undefined,
-  }).executeOnFiles(files))).then((result): Eslint.LintReport => {
+  }).executeOnFiles(filteredFiles))).then((result): Eslint.LintReport => {
     if (result.fixableErrorCount + result.fixableWarningCount) {
       Eslint.outputFixes(result);
     }
