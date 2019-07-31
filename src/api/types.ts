@@ -11,6 +11,7 @@ export interface Options {
   extStyle: string;
   skipLogic: boolean;
   skipStyle: boolean;
+  ignoreWarnings: boolean;
 }
 
 export interface ParsedOptions {
@@ -23,6 +24,7 @@ export interface ParsedOptions {
   extStyle: string[];
   skipLogic: boolean;
   skipStyle: boolean;
+  ignoreWarnings: boolean;
 }
 
 export interface PartialLogicOptions extends Linter.Config {
@@ -35,14 +37,7 @@ export interface Config {
 }
 
 export interface Result {
-  logic: CLIEngine.LintReport;
-  style: LinterResult;
-}
-
-export interface StylelintWarning {
-  line: number;
-  column: number;
-  rule: string;
-  severity: 'error' | 'warning';
-  text: string;
+  options: ParsedOptions;
+  logic?: CLIEngine.LintReport;
+  style?: LinterResult;
 }

@@ -40,9 +40,9 @@ root of you project. Since these can also be used for IDE integration, this type
 configuration is prefered. If you still want to create a custom config file with javascript or
 typescript, this option allows you to do just that. The application includes a set of rules to apply
 when none are provided. They are located at `/config/<logic|style>/recommended.js`. You can use them
-to extend your `.eslintrc` and `.stylelintrc` files as well - just remember to abide by the `eslint`
-and `stylelint` config. For more info, [read this][link-eslint-config] and
-[this][link-stylelint-config]).
+on your custom config file or to extend your `.eslintrc` and `.stylelintrc` files. Remember to abide
+by the `eslint` and `stylelint` configs. For more info, [read this][link-eslint-config] and
+[this][link-stylelint-config].
 To use this option you can add `--config <file>` or through the shorthanded notation `-c`.
 
 Example:
@@ -161,13 +161,22 @@ Examples:
 - `biotope-quality-gate --skip-style` - will only lint `js`, `ts` files
 
 ### Fix (`--fix`)
-This option will try to fix any errors that it finds automatically. If there are errors it finds but
-cannot fix them, it will report them as usual.
-Typically, this option should not be used on any automated tests.
+This option will try to fix any errors that it finds automatically before reporting. If there are
+any unfixable errors, it will report them as usual. Typically, this option should not be used on any
+automated tests.
 To use this option you can add `--fix` or through the shorthanded notation `-f`.
 
 Example:
 - `biotope-quality-gate --fix`
+
+### Ignore Warnings (`--ignore-warnings`)
+By default, all warnings are treated as errors and will make the process fail. By using this option
+you can disable this behaviour and allow warnings to pass. If there are warnings when using this
+option, they will be reported as usual.
+To use this option you can add `--ignore-warnings` or through the shorthanded notation `-w`.
+
+Example:
+- `biotope-quality-gate --ignore-warnings`
 
 ### Help (`--help`)
 This option will print all the above options to the console.

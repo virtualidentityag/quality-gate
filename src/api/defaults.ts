@@ -10,4 +10,5 @@ export const defaultOptions: Options = {
   extStyle: '.css,.scss',
   skipLogic: false,
   skipStyle: false,
+  ignoreWarnings: false,
 };

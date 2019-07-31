@@ -40,41 +40,41 @@ const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Con
   }));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  .map(result => ({
+  .map((result): Stylelint.LintResult => ({
     ...result,
     warnings: sortByLineColumn(result.warnings),
   }))
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  .forEach(result => result.warnings.forEach((warning): void => logger(textLog(
+  .forEach((result): void => result.warnings.forEach((warning): void => logger(textLog(
     result.source.replace(projectPath, '.'),
     `${warning.line || ''}`,
     `${warning.column || ''}`,
     warning.text,
   ))));
 
-const hasAnyErrors = (results: ErrorContainer[]): boolean => results.reduce(
+const hasAnyErrors = (
+  results: ErrorContainer[],
+  ignoreWarnings: boolean,
+): boolean => results.reduce(
   (
     value: boolean,
-    { errorCount, errored }: ErrorContainer,
-  ): boolean => value || !!errorCount || !!errored,
+    { errorCount, warningCount, errored }: ErrorContainer,
+  ): boolean => value || !!errorCount || !!errored || (!ignoreWarnings && !!warningCount),
   false,
 );
 
-export const report = ({ logic, style }: Partial<Result>, logger?: Console['log']): boolean => {
+// eslint-disable-next-line no-console
+export const report = ({ options, logic, style }: Result, logger: Console['log'] = console.log): boolean => {
   const projectPath = resolve(process.cwd());
   let hasErrors = false;
 
   if (logic) {
-    // eslint-disable-next-line no-console
-    reportLogic(logic, projectPath, logger || console.log);
-    hasErrors = hasErrors || hasAnyErrors(logic.results);
+    reportLogic(logic, projectPath, logger);
+    hasErrors = hasErrors || hasAnyErrors(logic.results, options.ignoreWarnings);
   }
 
   if (style) {
-    // eslint-disable-next-line no-console
-    reportStyle(style, projectPath, logger || console.log);
-    hasErrors = hasErrors || hasAnyErrors(style.results);
+    reportStyle(style, projectPath, logger);
+    hasErrors = hasErrors || hasAnyErrors(style.results, options.ignoreWarnings);
   }
 
   return hasErrors;

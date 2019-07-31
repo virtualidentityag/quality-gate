@@ -20,9 +20,10 @@ const parseOptions = (options: Partial<Options>): ParsedOptions => ({
   extStyle: toArray(options.extStyle || defaultOptions.extStyle),
   skipLogic: toBoolean(options.skipLogic, defaultOptions.skipLogic),
   skipStyle: toBoolean(options.skipStyle, defaultOptions.skipStyle),
+  ignoreWarnings: toBoolean(options.ignoreWarnings, defaultOptions.ignoreWarnings),
 });
 
-export const lint = async (options: Partial<Options>): Promise<Partial<Result>> => {
+export const lint = async (options: Partial<Options>): Promise<Result> => {
   const parsedOptions = parseOptions(options);
   const { logic, style } = getConfig(parsedOptions.config);
 
@@ -38,7 +39,8 @@ export const lint = async (options: Partial<Options>): Promise<Partial<Result>> 
     stylePosition = -1;
   }
 
-  return Promise.all(linterPromises).then((values): Partial<Result> => ({
+  return Promise.all(linterPromises).then((values): Result => ({
+    options: parsedOptions,
     ...(!parsedOptions.skipLogic ? { logic: values[0] as Result['logic'] } : {}),
     ...(values[stylePosition] ? { style: values[stylePosition] as Result['style'] } : {}),
   }));
