@@ -54,7 +54,7 @@ recommended config and your own, consider using a package like `merge-deep`.
 **Note 2**: Any configuration file (if written in typescript) will be compiled before executing.
 
 `.eslintrc` file example (no `--config` option needed):
-```json
+```js
 {
   "extends": "./node_modules/@biotope/quality-gate/config/logic/recommended.js"
   // Add any other definition here. Example:
@@ -66,7 +66,7 @@ recommended config and your own, consider using a package like `merge-deep`.
 ```
 
 Similarly, the `.stylelintrc` should look like (no `--config` option needed):
-```json
+```js
 {
   "extends": "./node_modules/@biotope/quality-gate/config/style/recommended.js"
   // Add any other definition here. Example:
