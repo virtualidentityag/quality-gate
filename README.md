@@ -198,6 +198,7 @@ The plugin `stylelint-no-unsupported-browser-features` used in this package uses
 that looks for errors in all left-hand strings, regardless of them being variables or css
 properties (example 1) and regardless of them fully matching the css property (example 2).
 
+#### Examples
 Example 1:
 ```scss
 // Assume that: project browsers do not support css property "columns"
@@ -218,10 +219,28 @@ Example 2:
   text-transform: none;
 }
 ```
-GitHub issues:
+GitHub issues/PR links:
+- https://github.com/anandthakker/doiuse/issues/82
+- https://github.com/ismay/stylelint-no-unsupported-browser-features/issues/45
 - https://github.com/anandthakker/doiuse/issues/100
 - https://github.com/anandthakker/doiuse/issues/106
-- https://github.com/ismay/stylelint-no-unsupported-browser-features/issues/45
+- https://github.com/anandthakker/doiuse/pull/101
+
+#### Advice
+
+Until this is fixed, surround your variables with disable/enable and disable each false positive:
+```scss
+// stylelint-disable plugin/no-unsupported-browser-features
+$grid-columns: 12;
+$grid-columns-width: 60px;
+// stylelint-enable plugin/no-unsupported-browser-features
+
+.my-div {
+  columns: $grid-columns;
+  // stylelint-disable-next-line plugin/no-unsupported-browser-features
+  text-transform: none;
+}
+```
 
 
 [link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
