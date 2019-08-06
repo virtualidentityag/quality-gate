@@ -191,6 +191,38 @@ fix that nasty bug that's bugging eveyone. You can just create a PR afterwards. 
 have the time, we also welcome everyone to create issues with feature requests or bugs, just be sure
 that your request/bug is within the scope of this project.
 
+## Known Issues
+
+### Style browser support false positives
+The plugin `stylelint-no-unsupported-browser-features` used in this package uses a `doiuse` version
+that looks for errors in all left-hand strings, regardless of them being variables or css
+properties (example 1) and regardless of them fully matching the css property (example 2).
+
+Example 1:
+```scss
+// Assume that: project browsers do not support css property "columns"
+
+// False positive on variable name ("grid-columns")
+$grid-columns: 12;
+
+.my-div {
+  // Correct error on css property ("columns")
+  columns: $grid-columns;
+}
+```
+Example 2:
+```scss
+// Assume that: project browsers do not support css property "transform2d"
+.my-div {
+  // False positive due to left-hand containing the string "transform"
+  text-transform: none;
+}
+```
+GitHub issues:
+- https://github.com/anandthakker/doiuse/issues/100
+- https://github.com/anandthakker/doiuse/issues/106
+- https://github.com/ismay/stylelint-no-unsupported-browser-features/issues/45
+
 
 [link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
