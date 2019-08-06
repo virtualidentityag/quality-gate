@@ -23,8 +23,8 @@ module.exports = {
     // Disabled Ts rules (to let AirBnB rules deal with it)
     '@typescript-eslint/no-var-requires': 'off',
 
-    // eslint-plugin-filenames - Force kebab-case file naming
-    'filenames/match-regex': ['error', '^[a-z-.]+$', true],
+    // eslint-plugin-filenames - Force kebab-case or snake_case file naming
+    'filenames/match-regex': ['error', '^[a-z-_.]+$', true],
   },
   env: {
     browser: true,

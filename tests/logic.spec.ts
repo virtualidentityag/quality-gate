@@ -10,8 +10,8 @@ describe('logic linting', (): void => {
       pattern: `${PROJECTS_PATH}/logic-fail`,
     },
     [
-      `./${PROJECTS_PATH}/logic-fail/wrongName.js: File path is error-prone. Use kebab-case for folder names and files. (@biotope-quality-gate/filenames)`,
-      `./${PROJECTS_PATH}/logic-fail/wrongName.ts: File path is error-prone. Use kebab-case for folder names and files. (@biotope-quality-gate/filenames)`,
+      `./${PROJECTS_PATH}/logic-fail/wrongName.js: File path is error-prone. Use kebab-case or snake_case for folder names and files. (biotope-quality-gate/filenames)`,
+      `./${PROJECTS_PATH}/logic-fail/wrongName.ts: File path is error-prone. Use kebab-case or snake_case for folder names and files. (biotope-quality-gate/filenames)`,
       `./${PROJECTS_PATH}/logic-fail/index.js [1, 1]: Too many blank lines at the beginning of file. Max of 2 allowed. (no-multiple-empty-lines)`,
       `./${PROJECTS_PATH}/logic-fail/index.js [4, 1]: Unexpected console statement. (no-console)`,
       `./${PROJECTS_PATH}/logic-fail/index.js [4, 32]: Missing semicolon. (semi)`,

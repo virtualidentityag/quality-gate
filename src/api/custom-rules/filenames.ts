@@ -4,10 +4,10 @@ import * as Stylelint from 'stylelint';
 
 import { updateLogicResults, updateStyleResults, CustomError } from './update-results';
 
-const rule = '@biotope-quality-gate/filenames';
-const message = 'File path is error-prone. Use kebab-case for folder names and files.';
+const rule = 'biotope-quality-gate/filenames';
+const message = 'File path is error-prone. Use kebab-case or snake_case for folder names and files.';
 
-const regex = /^[a-z-./\\]+$/;
+const regex = /^[a-z-_./\\]+$/;
 
 const checkFilename = (file: string): boolean => regex.test(resolve(file).replace(process.cwd(), ''));
 
