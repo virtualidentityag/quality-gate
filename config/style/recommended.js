@@ -10,6 +10,11 @@ module.exports = {
   ],
   rules: {
     'number-leading-zero': 'never',
-    'plugin/no-unsupported-browser-features': true,
+    'plugin/no-unsupported-browser-features': [true, {
+      severity: 'warning',
+      ignore: [
+        'calc', // due to IE9+ bug being neglectable
+      ],
+    }],
   },
 };
