@@ -23,12 +23,12 @@
     "noFallthroughCasesInSwitch": true,
 
     "typeRoots": [
-      "typings",
+      "types",
       "node_modules/@types"
     ]
   },
   "include": [
-    "typings/global.d.ts",
+    "types/global.d.ts",
     "src/**/*.ts"
   ]
 }

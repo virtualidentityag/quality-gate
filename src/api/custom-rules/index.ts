@@ -13,11 +13,13 @@ const rules: Rule[] = [
 ];
 
 const runLogic = (files: string[], result: Eslint.LintReport): void => rules
-  .forEach(({ logic }): void => logic(files, result));
+  .forEach(({ logic }) => logic(files, result));
 
 const runStyle = (files: string[], result: Stylelint.LinterResult): void => rules
-  .forEach(({ style }): void => style(files, result));
+  .forEach(({ style }) => style(files, result));
 
-export const customRules = (type: 'logic' | 'style', files: string[], result: Eslint.LintReport | Stylelint.LinterResult): void => (type === 'logic'
+export const customRules = (
+  type: 'logic' | 'style', files: string[], result: Eslint.LintReport | Stylelint.LinterResult,
+): void => (type === 'logic'
   ? runLogic(files, result as Eslint.LintReport)
   : runStyle(files, result as Stylelint.LinterResult));

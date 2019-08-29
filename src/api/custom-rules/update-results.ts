@@ -45,8 +45,7 @@ const createStyleError = (error: CustomError): Stylelint.LintResult => ({
 
 
 export const updateLogicResults = (
-  errors: CustomError[],
-  result: Eslint.LintReport,
+  errors: CustomError[], result: Eslint.LintReport,
 ): Eslint.LintReport => {
   const mappedErrors = errors.map(createLogicError);
   const { errorCount, warningCount } = mappedErrors
@@ -59,7 +58,7 @@ export const updateLogicResults = (
   result.results = [
     ...mappedErrors,
     ...result.results
-      .filter((res): boolean => !res.messages.filter(({ ruleId }): boolean => ruleId === 'filenames/match-regex').length),
+      .filter((res) => !res.messages.filter(({ ruleId }) => ruleId === 'filenames/match-regex').length),
   ];
 
   result.warningCount += warningCount;
@@ -70,8 +69,7 @@ export const updateLogicResults = (
 };
 
 export const updateStyleResults = (
-  errors: CustomError[],
-  result: Stylelint.LinterResult,
+  errors: CustomError[], result: Stylelint.LinterResult,
 ): Stylelint.LinterResult => {
   // eslint-disable-next-line no-param-reassign
   result.results = [

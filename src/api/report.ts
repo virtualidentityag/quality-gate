@@ -11,7 +11,7 @@ interface ErrorContainer {
 }
 
 const sortByLineColumn = (warnings: Stylelint.Warning[]): Stylelint.Warning[] => warnings
-  .sort((left: Stylelint.Warning, right: Stylelint.Warning): number => {
+  .sort((left, right) => {
     if (left.line !== right.line) {
       return left.line > right.line ? 1 : -1;
     }
@@ -27,40 +27,32 @@ const textLog = (
 ): string => `${file}${line && column ? ` [${line}, ${column}]` : ''}: ${message}${rule ? ` (${rule})` : ''}`;
 
 const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Console['log']): void => report.results
-  .forEach((error): void => error.messages.forEach((warning): void => {
-    if (warning.ruleId) {
-      logger(textLog(
-        error.filePath.replace(projectPath, '.'),
-        `${warning.line || ''}`,
-        `${warning.column || ''}`,
-        warning.message,
-        `${warning.ruleId || ''}`,
-      ));
-    }
-  }));
+  .reduce((accumulator, result) => ([
+    ...accumulator,
+    {
+      filePath: result.filePath.replace(projectPath, '.'),
+      messages: result.messages.filter((message) => message.ruleId),
+    },
+  ]), [])
+  .forEach(({ messages, filePath }) => messages.forEach((message) => logger(
+    textLog(filePath, `${message.line || ''}`, `${message.column || ''}`, message.message, `${message.ruleId || ''}`),
+  )));
 
 const reportStyle = (report: Stylelint.LinterResult, projectPath: string, logger: Console['log']): void => report.results
-  .map((result): Stylelint.LintResult => ({
-    ...result,
+  .map((result) => ({
+    source: result.source.replace(projectPath, '.'),
     warnings: sortByLineColumn(result.warnings),
   }))
-  .forEach((result): void => result.warnings.forEach((warning): void => logger(textLog(
-    result.source.replace(projectPath, '.'),
-    `${warning.line || ''}`,
-    `${warning.column || ''}`,
-    warning.text,
-  ))));
+  .forEach(({ source, warnings }) => warnings.forEach((warning) => logger(
+    textLog(source, `${warning.line || ''}`, `${warning.column || ''}`, warning.text),
+  )));
 
-const hasAnyErrors = (
-  results: ErrorContainer[],
-  ignoreWarnings: boolean,
-): boolean => results.reduce(
-  (
-    value: boolean,
-    { errorCount, warningCount, errored }: ErrorContainer,
-  ): boolean => value || !!errorCount || !!errored || (!ignoreWarnings && !!warningCount),
-  false,
-);
+const hasAnyErrors = (results: ErrorContainer[], ignoreWarnings: boolean): boolean => results
+  .reduce(
+    (value: boolean, { errorCount, warningCount, errored }: ErrorContainer): boolean => value
+      || !!errorCount || !!errored || (!ignoreWarnings && !!warningCount),
+    false,
+  );
 
 // eslint-disable-next-line no-console
 export const report = ({ options, logic, style }: Result, logger: Console['log'] = console.log): boolean => {
