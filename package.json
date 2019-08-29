@@ -47,7 +47,7 @@
     "stylelint-config-standard": "~18.3",
     "stylelint-no-unsupported-browser-features": "~3.0",
     "stylelint-scss": "~3.10",
-    "typescript": "~3.5"
+    "typescript": "~3.6.2"
   },
   "devDependencies": {
     "@types/glob": "~7.1",
