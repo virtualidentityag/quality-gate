@@ -14,7 +14,7 @@ const checkFilename = (file: string): boolean => regex.test(resolve(file).replac
 export const filenames = {
   logic(files: string[], result: Eslint.LintReport): Eslint.LintReport {
     const newErrors = files
-      .filter((file): boolean => !checkFilename(file))
+      .filter((file) => !checkFilename(file))
       .map((file): CustomError => ({ file, rule, message }));
 
     return updateLogicResults(newErrors, result);
@@ -22,7 +22,7 @@ export const filenames = {
 
   style(files: string[], result: Stylelint.LinterResult): Stylelint.LinterResult {
     const newErrors = files
-      .filter((file): boolean => !checkFilename(file))
+      .filter((file) => !checkFilename(file))
       .map((file): CustomError => ({ file, rule, message }));
 
     return updateStyleResults(newErrors, result);
