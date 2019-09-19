@@ -1,1 +1,9 @@
 !/lib
+
+/.*
+/coverage
+/src
+/tests
+/types
+/*.config.js
+/tsconfig*
