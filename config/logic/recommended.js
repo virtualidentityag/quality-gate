@@ -15,13 +15,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:import/typescript',
       ],
-      rules: {
-        // Modified Ts rules (to match AirBnB rules)
-        '@typescript-eslint/indent': ['error', 2],
-
-        // Disabled Ts rules (to let AirBnB rules deal with it)
-        '@typescript-eslint/no-var-requires': 'off',
-      },
     },
   ],
   plugins: [
