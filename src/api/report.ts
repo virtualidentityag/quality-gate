@@ -19,11 +19,7 @@ const sortByLineColumn = (warnings: Stylelint.Warning[]): Stylelint.Warning[] =>
   });
 
 const textLog = (
-  file: string,
-  line: string,
-  column: string,
-  message: string,
-  rule?: string,
+  file: string, line: string, column: string, message: string, rule?: string,
 ): string => `${file}${line && column ? ` [${line}, ${column}]` : ''}: ${message}${rule ? ` (${rule})` : ''}`;
 
 const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Console['log']): void => report.results
@@ -31,7 +27,7 @@ const reportLogic = (report: Eslint.LintReport, projectPath: string, logger: Con
     ...accumulator,
     {
       filePath: result.filePath.replace(projectPath, '.'),
-      messages: result.messages.filter((message) => message.ruleId),
+      messages: result.messages.filter(({ ruleId, fatal, message }) => ruleId || fatal || message),
     },
   ]), [])
   .forEach(({ messages, filePath }) => messages.forEach((message) => logger(
