@@ -18,6 +18,7 @@ module.exports = {
       rules: {
         // Modified recommended rules (to match AirBnB rules)
         '@typescript-eslint/indent': ['error', 2],
+        indent: 'off',
       },
     },
   ],
