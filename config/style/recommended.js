@@ -19,5 +19,6 @@ module.exports = {
     'declaration-block-no-duplicate-properties': true,
     'shorthand-property-no-redundant-values': true,
     'declaration-no-important': true,
+    'property-no-vendor-prefix': true,
   },
 };
