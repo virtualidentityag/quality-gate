@@ -16,5 +16,6 @@ module.exports = {
         'calc', // due to IE9+ bug being neglectable
       ],
     }],
+    'declaration-block-no-duplicate-properties': true,
   },
 };
