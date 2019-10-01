@@ -21,5 +21,8 @@ module.exports = {
     'declaration-no-important': true,
     'property-no-vendor-prefix': true,
     'selector-max-id': 0,
+    'string-quotes': 'single',
+    'scss/dollar-variable-colon-space-after': 'always',
+    'scss/dollar-variable-colon-space-before': 'never',
   },
 };
