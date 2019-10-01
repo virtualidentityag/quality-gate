@@ -20,5 +20,6 @@ module.exports = {
     'shorthand-property-no-redundant-values': true,
     'declaration-no-important': true,
     'property-no-vendor-prefix': true,
+    'selector-max-id': 0,
   },
 };
