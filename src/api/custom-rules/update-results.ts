@@ -70,13 +70,11 @@ export const updateLogicResults = (
 
 const outputStyleKeys = ['source', 'description', 'invalidOptionWarnings', 'parseErrors', 'errored', 'warnings'];
 
-const filterStyleResult = (result: Stylelint.LintResult): Stylelint.LintResult => Object
-  .keys(result)
-  .filter((key) => outputStyleKeys.includes(key))
+const filterStyleResult = (result: Stylelint.LintResult): Stylelint.LintResult => outputStyleKeys
   .reduce((acc, key) => ({
     ...acc,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key]: (result as Record<string, any>)[key],
+    [key]: (result as Record<string, any>)[key] || undefined,
   }), {}) as Stylelint.LintResult;
 
 export const updateStyleResults = (
