@@ -73,7 +73,7 @@ const outputStyleKeys = ['source', 'description', 'invalidOptionWarnings', 'pars
 const filterStyleResult = (result: Stylelint.LintResult): Stylelint.LintResult => Object
   .keys(result)
   .filter((key) => outputStyleKeys.includes(key))
-  .reduce((acc, key: string) => ({
+  .reduce((acc, key) => ({
     ...acc,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key]: (result as Record<string, any>)[key],
