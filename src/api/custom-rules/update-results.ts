@@ -68,6 +68,17 @@ export const updateLogicResults = (
   return result;
 };
 
+const outputStyleKeys = ['source', 'description', 'invalidOptionWarnings', 'parseErrors', 'errored', 'warnings'];
+
+const filterStyleResult = (result: Stylelint.LintResult): Stylelint.LintResult => Object
+  .keys(result)
+  .filter((key) => outputStyleKeys.includes(key))
+  .reduce((acc, key: string) => ({
+    ...acc,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key]: (result as Record<string, any>)[key],
+  }), {}) as Stylelint.LintResult;
+
 export const updateStyleResults = (
   errors: CustomError[], result: Stylelint.LinterResult,
 ): Stylelint.LinterResult => {
@@ -78,7 +89,7 @@ export const updateStyleResults = (
   ];
 
   // eslint-disable-next-line no-param-reassign
-  result.output += JSON.stringify(result.results);
+  result.output += JSON.stringify(result.results.map(filterStyleResult));
 
   return result;
 };
