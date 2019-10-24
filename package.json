@@ -33,8 +33,8 @@
   "dependencies": {
     "@types/eslint": "~6.1",
     "@types/stylelint": "~9.10",
-    "@typescript-eslint/eslint-plugin": "~2.3",
-    "@typescript-eslint/parser": "~2.3",
+    "@typescript-eslint/eslint-plugin": "~2.5",
+    "@typescript-eslint/parser": "~2.5",
     "commander": "~3.0",
     "eslint": "~6.5",
     "eslint-config-airbnb-base": "~14.0",
@@ -42,17 +42,17 @@
     "eslint-plugin-filenames": "~1.3",
     "eslint-plugin-import": "~2.18",
     "glob": "~7.1",
-    "stylelint": "~11.0",
+    "stylelint": "~11.1",
     "stylelint-config-recommended-scss": "~4.0",
     "stylelint-config-standard": "~19.0",
     "stylelint-no-unsupported-browser-features": "~3.0",
-    "stylelint-scss": "~3.11",
+    "stylelint-scss": "~3.12",
     "typescript": "~3.6"
   },
   "devDependencies": {
     "@types/glob": "~7.1",
     "@types/jest": "~24.0",
-    "eslint-plugin-jest": "~22.17",
+    "eslint-plugin-jest": "~22.20",
     "jest": "~24.9",
     "rimraf": "~3.0",
     "ts-jest": "~24.1"
