@@ -185,6 +185,30 @@ To use this option you can add `--help` or through the shorthanded notation `-h`
 Example:
 - `biotope-quality-gate --help` - will print info on available options
 
+## IDE Integration
+
+### VSCode
+- Install `@biotope/quality-gate` on your project as a dev dependency
+- Create an `.eslintrc` file and a `.stylelintrc` file on the root of your project
+  - Hint: You can copy the examples from the `--config` section of this Readme (under **Note 2**)
+- Install the `eslint` and `stylelint-plus` plugins
+  - `settings.json` extra configs:
+  ```json
+    // Disable built-in tslint
+    "tslint.enable": false,
+    // Add eslint files/languages that you want to lint
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      { "language": "typescript", "autoFix": true },
+      { "language": "typescriptreact", "autoFix": true }
+    ],
+    // Autofix section
+    "eslint.autoFixOnSave": true,
+    "stylelint.autoFixOnSave": true
+  ```
+  - Note that you can remove the fix on save lines if that's something you don't fancy
+
 ## Contributing
 PRs are very much welcome! We encourage you to fork the project and implement your own feature or
 fix that nasty bug that's bugging eveyone. You can just create a PR afterwards. If you just don't
