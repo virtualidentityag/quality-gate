@@ -207,7 +207,7 @@ Example:
     "eslint.autoFixOnSave": true,
     "stylelint.autoFixOnSave": true
   ```
-  - Note that you can remove the fix on save lines if that's something you don't fancy
+  - Note that you can remove the autofix lines if that's something you don't fancy
 
 ## Contributing
 PRs are very much welcome! We encourage you to fork the project and implement your own feature or
