@@ -33,7 +33,7 @@
   "dependencies": {
     "@types/eslint": "~6.1",
     "@types/stylelint": "~9.10",
-    "@typescript-eslint/eslint-plugin": "~2.6",
+    "@typescript-eslint/eslint-plugin": "~2.8.0",
     "@typescript-eslint/parser": "~2.6",
     "commander": "~4.0",
     "eslint": "~6.6",
