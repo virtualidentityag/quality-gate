@@ -194,17 +194,15 @@ Example:
 - Install the `eslint` and `stylelint-plus` plugins
   - `settings.json` extra configs:
   ```json
-    // Disable built-in tslint
-    "tslint.enable": false,
     // Add eslint files/languages that you want to lint
     "eslint.validate": [
       "javascript",
       "javascriptreact",
-      { "language": "typescript", "autoFix": true },
-      { "language": "typescriptreact", "autoFix": true }
+      "typescript",
+      "typescriptreact"
     ],
     // Autofix section
-    "eslint.autoFixOnSave": true,
+    "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
     "stylelint.autoFixOnSave": true
   ```
   - Note that you can remove the autofix lines if that's something you don't fancy
