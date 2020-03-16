@@ -42,7 +42,7 @@
     "eslint-plugin-filenames": "~1.3",
     "eslint-plugin-import": "~2.18",
     "glob": "~7.1",
-    "stylelint": "~12.0.1",
+    "stylelint": "~13.2.1",
     "stylelint-config-recommended-scss": "~4.1",
     "stylelint-config-standard": "~19.0",
     "stylelint-no-unsupported-browser-features": "~4.0",
