@@ -55,6 +55,6 @@
     "eslint-plugin-jest": "~23.3.0",
     "jest": "~24.9",
     "rimraf": "~3.0",
-    "ts-jest": "~24.2"
+    "ts-jest": "~25.5.1"
   }
 }
