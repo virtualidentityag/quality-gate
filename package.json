@@ -9,8 +9,8 @@
     "url": "https://github.com/biotope/biotope-quality-gate.git"
   },
   "scripts": {
-    "lint": "eslint \"./config/**/*.js\"",
-    "lint:fix": "eslint \"./config/**/*.js\" --fix",
+    "lint": "eslint \"./config/**/*.js\" \"./*.js\"",
+    "lint:fix": "eslint \"./config/**/*.js\" \"./*.js\" --fix",
     "test": "npm run test:code && npm run test:style",
     "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/logic/recommended-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
     "test:style": "stylelint \"./tests/pass.css\" \"./tests/pass.scss\""
@@ -31,13 +31,31 @@
     "stylelint-scss": "^3.18"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "~9.1",
     "@types/jest": "~26.0",
+    "cz-conventional-changelog": "~3.2",
     "jest": "~26.2",
+    "lint-staged": "~10.2",
     "typescript": "~3.9"
   },
   "peerDependencies": {
     "@types/jest": "^26.0",
     "jest": "^26.2",
     "typescript": "^3.9"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*": "npm run lint:fix"
   }
 }
