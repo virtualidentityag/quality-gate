@@ -4,6 +4,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:compat/recommended',
+    'plugin:react/recommended',
   ],
   // Needed because @typescript-eslint >= 2.0 does not check if file is typescript
   overrides: [
@@ -33,9 +34,20 @@ module.exports = {
 
     // eslint-plugin-filenames - Force kebab-case or snake_case file naming
     'filenames/match-regex': ['error', '^[a-z-_.]+$', true],
+
+    // JSX for Stencil
+    'react/react-in-jsx-scope': 'off', // "React" is not mandatory to be imported when JSX is present
+    'react/no-unknown-property': ['error', { ignore: ['class'] }], // allow "class" attribute on JSX
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'h' }], // allow "h" unused variable (for Stencil)
   },
   env: {
     browser: true,
     'jest/globals': true,
+  },
+  settings: {
+    react: {
+      // Hack to disable warning for "eslint-plugin-react"
+      version: '16.0',
+    },
   },
 };

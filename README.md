@@ -1,6 +1,6 @@
 # biotope-quality-gate
 
-Coding quality and standards for biotope projects.
+Coding quality and standards for biotope projects built on Stencil.
 
 This package gives you default configurations for biotope projects for `eslint` and `stylelint`,
 which will enable you to lint `.js`, `.jsx`, `.ts`, `.tsx`, `.css` and `.scss` files by simply
