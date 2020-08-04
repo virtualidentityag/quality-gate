@@ -68,6 +68,18 @@ Run `stylelint` in a script like so:
 
 Since you're running `stylelint` natively, check out their documentation on how to run or extend it [here][link-stylelint-disable].
 
+## IDEs
+To take advantage of the linters' strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
+
+If your IDE is not present on this list, please help us by making a PR to include proper plugins for it and ensure everyone shares this knowledge.
+
+Hint: "on-save" linting can be a big help to save development time.
+
+### VSCode
+- dbaeumer.vscode-eslint
+- hex-ci.stylelint-plus
+
+
 [link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
 [link-stylelint-config]: https://stylelint.io/user-guide/configuration/#the-configuration-object
