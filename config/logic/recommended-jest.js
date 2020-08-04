@@ -23,6 +23,7 @@ module.exports = {
   ],
   plugins: [
     'filenames',
+    'jest',
   ],
   rules: {
     // Project-specific Overrides
@@ -35,5 +36,6 @@ module.exports = {
   },
   env: {
     browser: true,
+    'jest/globals': true,
   },
 };
