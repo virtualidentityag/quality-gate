@@ -8,19 +8,36 @@
     "type": "git",
     "url": "https://github.com/biotope/biotope-quality-gate.git"
   },
+  "scripts": {
+    "lint": "eslint \"./config/**/*.js\"",
+    "lint:fix": "eslint \"./config/**/*.js\" --fix",
+    "test": "npm run test:code && npm run test:style",
+    "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/logic/recommended-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
+    "test:style": "stylelint \"./tests/pass.css\" \"./tests/pass.scss\""
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^3.8",
+    "@typescript-eslint/parser": "^3.8",
     "eslint": "^7.6",
     "eslint-config-airbnb-base": "^14.2",
     "eslint-plugin-compat": "^3.8",
     "eslint-plugin-filenames": "^1.3",
     "eslint-plugin-import": "^2.22",
     "eslint-plugin-jest": " ^23.20",
-    "jest": "^26.2",
     "stylelint": "^13.6",
     "stylelint-config-recommended-scss": "^4.2",
     "stylelint-config-standard": "^20.0",
     "stylelint-no-unsupported-browser-features": "^4.0",
     "stylelint-scss": "^3.18"
+  },
+  "devDependencies": {
+    "@types/jest": "~26.0",
+    "jest": "~26.2",
+    "typescript": "~3.9"
+  },
+  "peerDependencies": {
+    "@types/jest": "^26.0",
+    "jest": "^26.2",
+    "typescript": "^3.9"
   }
 }
