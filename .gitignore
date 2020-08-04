@@ -1,9 +1,3 @@
-# Generated Files
-/coverage
-/lib
-/public
-/watch
-*.log
 
 # Dependencies
 node_modules
@@ -15,7 +9,4 @@ Thumbs.db
 # IDEs and Development
 .idea
 .vscode
-.editorconfig
-/.env
-/docker-compose.yml
 TODO
