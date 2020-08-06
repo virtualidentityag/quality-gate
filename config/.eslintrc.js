@@ -5,7 +5,6 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:compat/recommended',
     'plugin:react/recommended',
-    'plugin:compat/recommended',
   ],
   // Needed because @typescript-eslint >= 2.0 does not check if file is typescript
   overrides: [
