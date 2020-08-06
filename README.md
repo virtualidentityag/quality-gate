@@ -14,7 +14,7 @@ without a hassle, but it will require you to run both `eslint` and `stylelint` o
 
 ## Using the recommended configs
 
-### Logic
+### Eslint
 Create an `.eslintrc` file and extend the default recommended config like so:
 ```js
 {
@@ -39,8 +39,8 @@ Run `eslint` in a script like so:
 
 Since you're running `eslint` natively, check out their documentation on how to run or extend it [here][link-eslint-disable].
 
-### Style
-Create an `.stylelintrc` file and extend the default recommended config like so:
+### Stylelint
+Create a `.stylelintrc` file and extend the default recommended config like so:
 ```js
 {
   "extends": "./node_modules/@biotope/quality-gate/config/.stylelintrc.js"
@@ -65,14 +65,20 @@ Run `stylelint` in a script like so:
 Since you're running `stylelint` natively, check out their documentation on how to run or extend it [here][link-stylelint-disable].
 
 ### Browser support
-Create an `.browserslistrc` file and extend the default recommended config like so:
-```js
+Create a `.browserslistrc` file and extend the default recommended config like so:
+```bash
 extends ./node_modules/@biotope/quality-gate/config/.browserslistrc
 # Add any other definition here. Example:
 # not ie 11
 ```
 
-Important: To make extends working, you have to start your linter which uses browserslist with dangerousExtend: true. For eslint and stylelint is this already pre-configured. More information [here][link-browserslist-extend].
+> Important: To make extends working, you have to start your linter which uses browserslist with dangerousExtend: true. For eslint and stylelint is this already pre-configured. More information [here][link-browserslist-extend].
+
+### Commitlint
+Create a `commitlint.config.js` file and extend the default recommended config like so:
+```js
+module.exports = require('@biotope/quality-gate/config/commitlint');
+```
 
 ## IDEs
 To take advantage of the linters' strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
