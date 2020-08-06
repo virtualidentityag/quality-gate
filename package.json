@@ -1,6 +1,6 @@
 {
   "name": "@biotope/quality-gate",
-  "version": "2.0.0",
+  "version": "1.0.3",
   "description": "Coding quality and standards for biotope projects",
   "author": "Biotope",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "lint": "eslint \"./config/**/*.js\" \"./*.js\"",
     "lint:fix": "eslint \"./config/**/*.js\" \"./*.js\" --fix",
     "test": "npm run test:code && npm run test:style",
-    "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/logic/recommended-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
+    "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/.eslintrc-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
     "test:style": "stylelint \"./tests/pass.css\" \"./tests/pass.scss\"",
     "release": "np"
   },
