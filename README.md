@@ -72,7 +72,7 @@ extends ./node_modules/@biotope/quality-gate/config/.browserslistrc
 # not ie 11
 ```
 
-Important: To make extends working, you have to start your linter which uses browserslist with dangerousExtend: true. For eslint and stylelint is this already preconfigured. More information [here][link-browserslist-extend].
+Important: To make extends working, you have to start your linter which uses browserslist with dangerousExtend: true. For eslint and stylelint is this already pre-configured. More information [here][link-browserslist-extend].
 
 ## IDEs
 To take advantage of the linters' strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
