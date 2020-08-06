@@ -9,10 +9,6 @@ extending the configurations provided.
 This package includes the necessary tools and plugins as dependencies for both configurations to run
 without a hassle, but it will require you to run both `eslint` and `stylelint` on your projects.
 
-Note that the logic files (`.js`, `.jsx`, `.ts` and `.tsx`) will require you to either add a
-`.browserslistrc` file to your project or configure your `package.json` file
-(see [this][link-browserslist-config] for more info).
-
 ## Installing
 - `npm i -D @biotope/quality-gate`
 
@@ -22,7 +18,7 @@ Note that the logic files (`.js`, `.jsx`, `.ts` and `.tsx`) will require you to 
 Create an `.eslintrc` file and extend the default recommended config like so:
 ```js
 {
-  "extends": "./node_modules/@biotope/quality-gate/config/logic/recommended.js"
+  "extends": "./node_modules/@biotope/quality-gate/config/.eslintrc.js"
   // Add any other definition here. Example:
   // "globals": {
   //   "MY_GLOBAL_VARIABLE": true
@@ -47,7 +43,7 @@ Since you're running `eslint` natively, check out their documentation on how to 
 Create an `.stylelintrc` file and extend the default recommended config like so:
 ```js
 {
-  "extends": "./node_modules/@biotope/quality-gate/config/style/recommended.js"
+  "extends": "./node_modules/@biotope/quality-gate/config/.stylelintrc.js"
   // Add any other definition here. Example:
   // "rules": {
   //   "unit-whitelist": ["em", "rem", "%", "s"]
@@ -68,6 +64,16 @@ Run `stylelint` in a script like so:
 
 Since you're running `stylelint` natively, check out their documentation on how to run or extend it [here][link-stylelint-disable].
 
+### Browser support
+Create an `.browserslistrc` file and extend the default recommended config like so:
+```js
+extends ./node_modules/@biotope/quality-gate/config/.browserslistrc
+# Add any other definition here. Example:
+# not ie 11
+```
+
+Important: To make extends working, you have to start your linter which uses browserlist with dangerousExtend: true. For eslint and stylelint is this already preconfigured. More information [here][link-browserlist-extend].
+
 ## IDEs
 To take advantage of the linters' strengths and to ensure no problems during merges, please consider installing the following plugins on your IDE.
 
@@ -83,3 +89,4 @@ Hint: "on-save" linting can be a big help to save development time.
 [link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
 [link-stylelint-config]: https://stylelint.io/user-guide/configuration/#the-configuration-object
+[link-browserlist-extend]: https://github.com/browserslist/browserslist#shareable-configs
