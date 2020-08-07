@@ -67,17 +67,19 @@ Since you're running `stylelint` natively, check out their documentation on how 
 ### Browser support
 Create a `.browserslistrc` file and extend the default recommended config like so:
 ```bash
-extends ./node_modules/@biotope/quality-gate/config/.browserslistrc
+extends ./node_modules/@biotope/quality-gate/config/.browserslistrc.js
 # Add any other definition here. Example:
 # not ie 11
 ```
 
-> Important: To make extends working, you have to start your linter which uses browserslist with dangerousExtend: true. For eslint and stylelint is this already pre-configured. More information [here][link-browserslist-extend].
+> Important: To ensure that `extends` works properly, please prepend `BROWSERSLIST_DANGEROUS_EXTEND=1` to the scripts that use the file, for example the `eslint`, `stylelint` and `stencil` commands. You can read more about it [here][link-browserslist-extend].
 
 ### Commitlint
 Create a `commitlint.config.js` file and extend the default recommended config like so:
 ```js
-module.exports = require('@biotope/quality-gate/config/commitlint');
+module.exports = {
+  extends: ['@biotope/quality-gate/config/.commitlintrc.js'],
+};
 ```
 
 ## IDEs
