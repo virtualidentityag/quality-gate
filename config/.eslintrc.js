@@ -39,7 +39,7 @@ module.exports = {
     }],
 
     // eslint-plugin-filenames - Force kebab-case or snake_case file naming
-    'filenames/match-regex': ['error', '^[a-z-_.]+$', true],
+    'filenames/match-regex': ['error', '^[a-z-_.0-9]+$', true],
 
     // Stencil rules
     'react/react-in-jsx-scope': 'off', // "React" is not mandatory to be imported when JSX is present
