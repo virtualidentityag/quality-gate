@@ -75,7 +75,7 @@ extends ./node_modules/@biotope/quality-gate/config/.browserslistrc.js
 > Important: To ensure that `extends` works properly, please prepend `BROWSERSLIST_DANGEROUS_EXTEND=1` to the scripts that use the file, for example the `eslint`, `stylelint` and `stencil` commands. You can read more about it [here][link-browserslist-extend].
 
 ### Commitlint
-Create a `commitlint.config.js` file and extend the default recommended config like so:
+Create a `.commitlintrc.js` file and extend the default recommended config like so:
 ```js
 module.exports = {
   extends: ['@biotope/quality-gate/config/.commitlintrc.js'],
