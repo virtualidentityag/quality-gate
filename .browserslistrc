@@ -1,3 +1,1 @@
-# should be this next line, but "eslint-plugin-compat" does not support node
-# node 10.15
-last 1 chrome version
+extends ./config/.browserslistrc.js

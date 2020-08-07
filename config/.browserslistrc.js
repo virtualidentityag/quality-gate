@@ -1,0 +1,6 @@
+module.exports = [
+  'last 2 years and >= 0.5%',
+  'not dead',
+  'ie 11',
+  'firefox esr',
+];

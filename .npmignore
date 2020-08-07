@@ -1,10 +1,4 @@
-# Override .gitignore and include lib folder
-!/lib
-
-## Dont include source and test code
-/.*
-/coverage
-/src
+/.github
+/node_modules
 /tests
-/types
-/*.config.js
+TODO
