@@ -10,16 +10,17 @@
   },
   "scripts": {
     "start": "npm run lint && npm test",
-    "lint": "eslint \"./config/**/*.js\" \"./*.js\"",
-    "lint:fix": "eslint \"./config/**/*.js\" \"./*.js\" --fix",
+    "lint": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./config/**/*.js\"",
+    "lint:fix": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./config/**/*.js\" --fix",
     "test": "npm run test:code && npm run test:style",
-    "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/.eslintrc-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
-    "test:style": "stylelint \"./tests/pass.css\" \"./tests/pass.scss\"",
+    "test:code": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./tests/pass.js\" \"./tests/pass.ts\" && BROWSERSLIST_DANGEROUS_EXTEND=1 eslint -c ./config/.eslintrc-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
+    "test:style": "BROWSERSLIST_DANGEROUS_EXTEND=1 stylelint \"./tests/pass.css\" \"./tests/pass.scss\"",
     "release": "np"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^3.8",
     "@typescript-eslint/parser": "^3.8",
+    "browserslist": "^4.14",
     "eslint": "^7.6",
     "eslint-config-airbnb-base": "^14.2",
     "eslint-plugin-compat": "^3.8",
