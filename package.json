@@ -37,6 +37,7 @@
     "stylelint-scss": "^3.18"
   },
   "devDependencies": {
+    "@stencil/eslint-plugin": "^0.3.1",
     "@types/jest": "~26.0",
     "cz-conventional-changelog": "~3.2",
     "jest": "~26.2",
