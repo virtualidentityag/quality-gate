@@ -10,18 +10,18 @@
   },
   "scripts": {
     "start": "npm run lint && npm test",
-    "lint": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./config/**/*.js\"",
-    "lint:fix": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./config/**/*.js\" --fix",
+    "lint": "eslint \"./config/**/*.js\"",
+    "lint:fix": "eslint \"./config/**/*.js\" --fix",
     "test": "npm run test:code && npm run test:style",
-    "test:code": "BROWSERSLIST_DANGEROUS_EXTEND=1 eslint \"./tests/pass.js\" \"./tests/pass.ts\" && BROWSERSLIST_DANGEROUS_EXTEND=1 eslint -c ./config/.eslintrc-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
-    "test:style": "BROWSERSLIST_DANGEROUS_EXTEND=1 stylelint \"./tests/pass.css\" \"./tests/pass.scss\"",
+    "test:code": "eslint \"./tests/pass.js\" \"./tests/pass.ts\" && eslint -c ./config/.eslintrc-jest.js \"./tests/test-*.js\" \"./tests/test-*.ts\"",
+    "test:style": "stylelint \"./tests/pass.css\" \"./tests/pass.scss\"",
     "release": "np"
   },
   "dependencies": {
     "@commitlint/cli": "^9.1",
     "@commitlint/config-conventional": "^9.1",
-    "@typescript-eslint/eslint-plugin": "^3.8",
-    "@typescript-eslint/parser": "^3.8",
+    "@typescript-eslint/eslint-plugin": "^3.9",
+    "@typescript-eslint/parser": "^3.9",
     "eslint": "^7.6",
     "eslint-config-airbnb-base": "^14.2",
     "eslint-plugin-compat": "^3.8",
@@ -40,12 +40,12 @@
     "cz-conventional-changelog": "~3.2",
     "jest": "~26.2",
     "lint-staged": "~10.2",
-    "np": "~6.3",
+    "np": "~6.4",
     "typescript": "~3.9"
   },
   "peerDependencies": {
     "@types/jest": "^26.0",
-    "jest": "^26.2",
+    "jest": "^26.3",
     "typescript": "^3.9"
   },
   "config": {
