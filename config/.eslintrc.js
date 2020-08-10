@@ -57,9 +57,6 @@ module.exports = {
     // https://github.com/benmosher/eslint-plugin-import/issues/422
     // 'import/no-extraneous-dependencies': ['error', { /* add exceptions here */ }],
     'import/no-extraneous-dependencies': 'off',
-
-    // Storybook
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   env: {
     browser: true,
