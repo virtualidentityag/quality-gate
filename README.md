@@ -64,16 +64,6 @@ Run `stylelint` in a script like so:
 
 Since you're running `stylelint` natively, check out their documentation on how to run or extend it [here][link-stylelint-disable].
 
-### Browser support
-Create a `.browserslistrc` file and extend the default recommended config like so:
-```bash
-extends ./node_modules/@biotope/quality-gate/config/.browserslistrc.js
-# Add any other definition here. Example:
-# not ie 11
-```
-
-> Important: To ensure that `extends` works properly, please prepend `BROWSERSLIST_DANGEROUS_EXTEND=1` to the scripts that use the file, for example the `eslint`, `stylelint` and `stencil` commands. You can read more about it [here][link-browserslist-extend].
-
 ### Commitlint
 Create a `.commitlintrc.json` file and extend the default recommended config like so:
 ```js
@@ -81,6 +71,16 @@ Create a `.commitlintrc.json` file and extend the default recommended config lik
   "extends": ["@biotope/quality-gate/config/.commitlintrc.js"]
   // Add any other definition here.
 }
+```
+
+## Browser support
+Create a `.browserslistrc` file with the following content:
+```bash
+last 2 years and >= 0.5%
+not dead
+ie 11
+firefox esr
+# Add any other definition here.
 ```
 
 ## IDEs
@@ -95,7 +95,5 @@ Hint: "on-save" linting can be a big help to save development time.
 - hex-ci.stylelint-plus
 
 
-[link-browserslist-config]: https://github.com/browserslist/browserslist#browserslist-
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
 [link-stylelint-config]: https://stylelint.io/user-guide/configuration/#the-configuration-object
-[link-browserslist-extend]: https://github.com/browserslist/browserslist#shareable-configs
