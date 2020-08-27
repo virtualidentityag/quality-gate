@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/jest": "~26.0",
-    "cz-conventional-changelog": "~3.2",
+    "cz-customizable": "^6.3.0",
     "jest": "~26.2",
     "lint-staged": "~10.2",
     "np": "~6.4",
@@ -49,8 +49,11 @@
     "typescript": "^3.9"
   },
   "config": {
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    },
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/cz-customizable"
     }
   },
   "husky": {
