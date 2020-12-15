@@ -26,6 +26,6 @@ module.exports = {
       ignore: [
         'custom-elements'
       ]
-    }]
+    }],
   },
 };
