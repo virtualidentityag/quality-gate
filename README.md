@@ -73,6 +73,9 @@ Create a `.commitlintrc.json` file and extend the default recommended config lik
 }
 ```
 
+### Commitizen
+Create a `.cz-config.js` file and extend the default recommended config by using i.e. [commitlint-config-cz]: https://github.com/whizark/commitlint-config-cz
+
 ## Browser support
 Create a `.browserslistrc` file with the following content:
 ```bash
