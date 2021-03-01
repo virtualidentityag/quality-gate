@@ -17,10 +17,15 @@ module.exports = {
     'scss/dollar-variable-colon-space-after': 'always',
     'scss/dollar-variable-colon-space-before': 'never',
     'plugin/no-unsupported-browser-features': [true, {
-      severity: 'warning',
+      severity: 'error',
       ignore: [
         'calc', // due to IE9+ bug being neglectable
       ],
+    }],
+    'selector-type-no-unknown': [true, {
+      ignore: [
+        'custom-elements'
+      ]
     }],
   },
 };
