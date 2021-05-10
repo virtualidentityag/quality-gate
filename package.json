@@ -39,7 +39,7 @@
     "@types/jest": "~26.0",
     "cz-conventional-changelog": "~3.2",
     "jest": "~26.2",
-    "lint-staged": "~10.2",
+    "lint-staged": "~11.0",
     "np": "~6.4",
     "typescript": "~3.9"
   },
