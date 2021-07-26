@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@commitlint/cli": "^9.1",
-    "@commitlint/config-conventional": "^9.1",
+    "@commitlint/config-conventional": "^13.1",
     "@typescript-eslint/eslint-plugin": "^3.9",
     "@typescript-eslint/parser": "^3.9",
     "eslint": "^7.6",
