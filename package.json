@@ -32,7 +32,7 @@
     "stylelint": "^13.6",
     "stylelint-config-recommended-scss": "^4.2",
     "stylelint-config-standard": "^20.0",
-    "stylelint-no-unsupported-browser-features": "^4.0",
+    "stylelint-no-unsupported-browser-features": "^5.0",
     "stylelint-scss": "^3.18"
   },
   "devDependencies": {
