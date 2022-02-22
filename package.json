@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/biotope/biotope-quality-gate.git"
+    "url": "https://github.com/virtualidentityag/quality-gate.git"
   },
   "scripts": {
     "start": "npm run lint && npm test",
