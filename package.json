@@ -44,8 +44,6 @@
     "typescript": "^4.5"
   },
   "peerDependencies": {
-    "@types/jest": "^27.4",
-    "jest": "^27.5",
     "typescript": "^4.5"
   },
   "config": {
