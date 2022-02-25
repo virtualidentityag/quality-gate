@@ -1,3 +1,6 @@
 {
-  "extends": "./config/.stylelintrc.js"
+  "extends": "./config/.stylelintrc.js",
+  "rules": {
+    "selector-type-no-unknown": [true, {"ignore": ["custom-elements"]}]
+  }
 }

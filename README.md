@@ -18,7 +18,7 @@ without a hassle, but it will require you to run both `eslint` and `stylelint` o
 Create an `.eslintrc` file and extend the default recommended config like so:
 ```js
 {
-  "extends": "./node_modules/@biotope/quality-gate/config/.eslintrc.js"
+  "extends": "./node_modules/@virtualidentityag/quality-gate/config/.eslintrc.js"
   // Add any other definition here. Example:
   // "globals": {
   //   "MY_GLOBAL_VARIABLE": true
@@ -43,7 +43,7 @@ Since you're running `eslint` natively, check out their documentation on how to 
 Create a `.stylelintrc` file and extend the default recommended config like so:
 ```js
 {
-  "extends": "./node_modules/@biotope/quality-gate/config/.stylelintrc.js"
+  "extends": "./node_modules/@virtualidentityag/quality-gate/config/.stylelintrc.js"
   // Add any other definition here. Example:
   // "rules": {
   //   "unit-whitelist": ["em", "rem", "%", "s"]
@@ -68,7 +68,7 @@ Since you're running `stylelint` natively, check out their documentation on how 
 Create a `.commitlintrc.json` file and extend the default recommended config like so:
 ```js
 {
-  "extends": ["@biotope/quality-gate/config/.commitlintrc.js"]
+  "extends": ["@virtualidentityag/quality-gate/config/.commitlintrc.js"]
   // Add any other definition here.
 }
 ```
