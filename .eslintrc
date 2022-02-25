@@ -4,6 +4,6 @@
     "class-methods-use-this": 0,
     "import/no-default-export": 1,
     "no-underscore-dangle": 0,
-    "default-param-last": 0,
+    "default-param-last": 0
   }
 }
