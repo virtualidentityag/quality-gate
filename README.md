@@ -83,8 +83,7 @@ Create a `.commitlintrc.json` file and extend the default recommended config lik
     "class-methods-use-this": 0,
     "no-script-url": 0,
     "react/prop-types": 0,
-    "react/jsx-key": 0,
-    "no-use-before-define": 0
+    "react/jsx-key": 0, // Otherwise eslint will force you to set keys for arrays, even if there aren't any arrays!
   },
 }
 ```
