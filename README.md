@@ -73,6 +73,39 @@ Create a `.commitlintrc.json` file and extend the default recommended config lik
 }
 ```
 
+## Recommended settings
+### Stencil
+#### .eslintrc
+```js
+{
+  "extends": "./node_modules/@virtualidentityag/quality-gate/config/.eslintrc.js",
+  "rules": {
+    "class-methods-use-this": 0,
+    "no-script-url": 0,
+    "import/no-default-export": 1,
+    "react/prop-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "react/jsx-key": 0,
+    "no-use-before-define": 0
+  },
+  "plugins": [
+    "eslint-plugin-local-rules"
+  ]
+}
+```
+#### .stylelintrc
+```js
+{
+  "extends": "./node_modules/@virtualidentityag/quality-gate/config/.stylelintrc.js",
+  "rules": {
+    "selector-class-pattern": ".",
+    "selector-no-qualifying-type": null,
+    "selector-type-no-unknown": [ true, { "ignore": ["custom-elements"] } ],
+    "no-descending-specificity": null
+  }
+}
+```
+
 ## Browser support
 Create a `.browserslistrc` file with the following content:
 ```bash
