@@ -1,4 +1,4 @@
-# biotope-quality-gate
+# virtualidentity-quality-gate
 
 Coding quality and standards for biotope projects built on Stencil.
 
@@ -10,7 +10,7 @@ This package includes the necessary tools and plugins as dependencies for both c
 without a hassle, but it will require you to run both `eslint` and `stylelint` on your projects.
 
 ## Installing
-- `npm i -D @biotope/quality-gate`
+- `npm i -D @virtualidentity/quality-gate`
 
 ## Using the recommended configs
 
