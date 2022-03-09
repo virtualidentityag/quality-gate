@@ -1,6 +1,6 @@
 {
   "name": "@virtualidentity/quality-gate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Coding quality and standards for VI projects",
   "author": "Virtual Identity AG",
   "license": "MIT",
