@@ -16,6 +16,7 @@ module.exports = {
     'string-quotes': 'single',
     'scss/dollar-variable-colon-space-after': 'always',
     'scss/dollar-variable-colon-space-before': 'never',
+    "selector-type-no-unknown": [true, { "ignore": ["custom-elements"] }],
     'plugin/no-unsupported-browser-features': [true, {
       severity: 'warning',
       ignore: [

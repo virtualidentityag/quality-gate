@@ -34,9 +34,8 @@ module.exports = {
   ],
   rules: {
     // Project-specific Overrides
-    'import/no-unresolved': 'off', // FIXME should be ignoring just '\\.(s?)css$', instead of being 'off'
-    'import/prefer-default-export': 'off',
-    'import/no-default-export': 'error',
+    'import/no-unresolved': 0, // FIXME should be ignoring just '\\.(s?)css$', instead of being 'off'
+    'import/prefer-default-export': 0,
     'import/extensions': ['error', 'ignorePackages', { // add jsx and tsx extensions
       js: 'never',
       jsx: 'never',
@@ -49,9 +48,13 @@ module.exports = {
     'filenames/match-regex': ['error', '^[a-z-_.0-9]+$', true],
 
     // Stencil rules
-    'react/react-in-jsx-scope': 'off', // "React" is not mandatory to be imported when JSX is present
+    'react/react-in-jsx-scope': 0, // "React" is not mandatory to be imported when JSX is present
     'react/no-unknown-property': ['error', { ignore: ['class'] }], // allow "class" attribute on JSX
     '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: 'h' }], // allow "h" unused variable (for Stencil)
+    'class-methods-use-this': 0,
+    'import/no-default-export': 1,
+    'no-underscore-dangle': 0,
+    'default-param-last': 0,
 
     // This rule cannot yet be disabled ONLY for specific packages like "@stencil/core"
     // https://github.com/benmosher/eslint-plugin-import/issues/422
