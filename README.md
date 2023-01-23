@@ -118,7 +118,7 @@ Hint: "on-save" linting can be a big help to save development time.
 
 ### VSCode
 - dbaeumer.vscode-eslint
-- hex-ci.stylelint-plus
+- stylelint.vscode-stylelint
 
 
 [link-eslint-config]: https://eslint.org/docs/user-guide/configuring
